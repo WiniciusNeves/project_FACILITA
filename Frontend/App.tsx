@@ -1,10 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import { API_URL } from '@env';
+
+console.log(API_URL);
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
+      <Text>Variável de ambiente: {API_URL}</Text>
       <StatusBar style="auto" />
     </View>
   );
