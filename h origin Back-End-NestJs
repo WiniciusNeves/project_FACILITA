@@ -1,0 +1,47 @@
+[33mcommit 8aeeeaf5539419d3bd7af3ed1e0288e8e4eaf650[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mBack-End-NestJs[m[33m, [m[1;31morigin/Back-End-NestJs[m[33m)[m
+Author: PedroCastro0507 <draocastro@gmail.com>
+Date:   Wed Mar 26 23:06:31 2025 -0300
+
+    chore: adiciona estrutura inicial do projeto com NestJS e TypeORM
+    
+    - Configuração do TypeORM com PostgreSQL
+    - Implementação inicial do módulo de usuários
+    - Criação das entidades e DTOs para User
+    - Adição do serviço de autenticação com JWT
+    - Estruturação do projeto seguindo boas práticas
+
+[33mcommit 000e16470433fa944b1b436d9ab2e4d84311c224[m[33m ([m[1;32mmain[m[33m)[m
+Author: WiniciusNevs <winciusneves2004@hotmail.com>
+Date:   Sat Mar 22 11:03:17 2025 -0300
+
+    chore(icons)Updates project icons with new image files
+
+[33mcommit 0c262e5b94c8105bacd06246b499187bc92615ae[m
+Author: WiniciusNevs <winciusneves2004@hotmail.com>
+Date:   Sat Mar 22 11:02:21 2025 -0300
+
+    build(env)adds support for environment variables with dotenv and settings in the Expo project
+
+[33mcommit 4bc8d298257eb73f288151b880f1381f0cc077cf[m
+Author: WiniciusNeves <winiciusneves2004@hotmail.com>
+Date:   Thu Mar 20 18:15:46 2025 -0300
+
+    adds initial Expo project structure with configuration files and dependencies
+
+[33mcommit a5206baee1d2a484d140be1b519b513ed8ac4ffb[m
+Author: Winicius Neves <127152668+WiniciusNeves@users.noreply.github.com>
+Date:   Wed Mar 19 15:27:43 2025 -0300
+
+    Delete FrontEnd directory
+
+[33mcommit 7d29e3fca127c91a85a9dfb999e52d003888c45f[m
+Author: WiniciusNevs <winciusneves2004@hotmail.com>
+Date:   Wed Mar 19 13:36:06 2025 -0300
+
+    adds initial structure of the Expo project with configuration files and dependencies
+
+[33mcommit ff0b0e3e3dcc55820c7018099dc1e47cbbcd99c6[m
+Author: Winicius Neves <127152668+WiniciusNeves@users.noreply.github.com>
+Date:   Sat Mar 15 12:03:08 2025 -0300
+
+    Initial commit
