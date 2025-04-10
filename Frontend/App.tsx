@@ -5,11 +5,11 @@ import { useNavigation } from '@react-navigation/native'; // Para navegação
 import { StackNavigationProp } from '@react-navigation/stack';
 
 type RootStackParamList = {
-  Home: undefined; // Define 'Home' as a valid route with no parameters
+  Onboarding: undefined;
 };
 
-type NavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
-console.log(process.env.API_URL);
+type NavigationProp = StackNavigationProp<RootStackParamList, 'Onboarding'>;
+
 
 export default function App() {
   const navigation = useNavigation<NavigationProp>();
@@ -17,7 +17,7 @@ export default function App() {
   useEffect(() => {
     // Simula o carregamento e navega para outra tela após 3 segundos
     const timer = setTimeout(() => {
-      navigation.navigate('Home'); // Substitua 'Home' pelo nome da sua próxima tela
+      navigation.navigate('Onboarding');
     }, 3000);
 
     return () => clearTimeout(timer); // Limpa o timer ao desmontar o componente
