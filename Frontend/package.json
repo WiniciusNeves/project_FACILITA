@@ -17,14 +17,15 @@
     "frontend": "file:",
     "react": "18.3.1",
     "react-dom": "18.3.1",
-    "react-native": "0.76.7",
+    "react-native": "^0.76.9",
     "react-native-config": "^1.5.5",
     "react-native-dotenv": "^3.4.11",
-    "react-native-gesture-handler": "^2.24.0",
+    "react-native-gesture-handler": "~2.20.2",
+    "react-native-image-picker": "^8.2.0",
     "react-native-paper": "^5.13.1",
-    "react-native-reanimated": "^3.17.1",
-    "react-native-safe-area-context": "^5.3.0",
-    "react-native-screens": "^4.10.0",
+    "react-native-reanimated": "~3.16.1",
+    "react-native-safe-area-context": "^4.12.0",
+    "react-native-screens": "~4.4.0",
     "react-native-vector-icons": "^10.2.0",
     "react-native-web": "~0.19.13"
   },
@@ -33,6 +34,7 @@
     "@types/react": "~18.3.12",
     "@types/react-native": "^0.73.0",
     "@types/react-native-dotenv": "^0.2.2",
+    "@types/styled-components": "^5.1.34",
     "typescript": "^5.3.3"
   },
   "private": true
