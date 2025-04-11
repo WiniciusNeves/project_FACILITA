@@ -44,8 +44,8 @@ export default function Onboarding() {
             </View>
 
             <View style={styles.indicatorContainer}>
-                <View style={[styles.indicator, styles.activeIndicator]} />
                 <View style={styles.indicator} />
+                <View style={[styles.indicator, styles.activeIndicator]} />
                 <View style={styles.indicator} />
             </View>
 

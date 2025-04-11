@@ -23,7 +23,7 @@ const PoliticaTermos = () => {
     };
 
     const handleNext = () => {
-        navigation.navigate("Home"); 
+        navigation.navigate("AuthScreen"); 
     };
 
     return (
