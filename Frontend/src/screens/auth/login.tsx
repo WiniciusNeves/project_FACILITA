@@ -20,6 +20,10 @@ import {
     linkText,
 } from "../../styles/login";
 
+interface LoginScreenProps {
+    navigation: any; // Defina o tipo correto para a navegação, se possível
+}
+
 export default function LoginScreen() {
     const navigation = useNavigation();
 
@@ -28,10 +32,11 @@ export default function LoginScreen() {
 
     };
     const handleRegister = () => {
-        navigation.navigate("Register");
+        navigation.navigate("Register" as any);
+  
     };
     const handleForgotPassword = () => {
-        navigation.navigate("ForgotPassword");
+        navigation.navigate("ForgotPassword" as any);
     };
     const handleGoogleLogin = () => {
         
@@ -64,14 +69,14 @@ export default function LoginScreen() {
                 secureTextEntry
             />
 
-            <TouchableOpacity style={forgotPassword.base}>
+            <TouchableOpacity style={forgotPassword.base} onPress={handleForgotPassword}>
                 <Text style={linkText.base}>esqueceu a sua senha?</Text>
             </TouchableOpacity>
 
-            <PrimaryButton label="Entrar" onPress={() => { }} />
+            <PrimaryButton label="Entrar" onPress={handleLogin} />
 
-            <TouchableOpacity>
-                <Text style={footerText.base}>
+            <TouchableOpacity onPress={handleRegister}>
+                <Text style={footerText.base} >
                     se nao tiver conta <Text style={linkText.base}>registre agora!</Text>
                 </Text>
             </TouchableOpacity>

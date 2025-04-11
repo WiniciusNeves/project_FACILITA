@@ -8,6 +8,7 @@ import Onboarding3 from './src/screens/onboarding/Onboarding3';
 import Policy from './src/screens/Policy';
 
 import Login from '@/screens/auth/login';
+import Register from '@/screens/auth/Register';
 
 const Stack = createStackNavigator();
 
@@ -21,6 +22,8 @@ export default function AppNavigator() {
         <Stack.Screen name="Onboarding3" component={Onboarding3} options={{ headerShown: false }} />
         <Stack.Screen name="Policy" component={Policy} options={{ headerShown: false }} />
         <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
+        <Stack.Screen name="Register" component={Register} options={{ headerShown: false }} />
+  
         
       </Stack.Navigator>
     </NavigationContainer>
