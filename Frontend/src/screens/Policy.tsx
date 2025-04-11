@@ -10,13 +10,11 @@ const PoliticaTermos = () => {
 
     const toggleCheck = (index: number) => {
         if (index === 3) {
-            // Se for o último ("Aceito tudo acima"), marca ou desmarca todos
             const allChecked = !checks[3];
             setChecks([allChecked, allChecked, allChecked, allChecked]);
         } else {
             const newChecks = [...checks];
             newChecks[index] = !newChecks[index];
-            // Se algum for desmarcado, "Aceito tudo acima" deve ir para false
             newChecks[3] = newChecks[0] && newChecks[1] && newChecks[2];
             setChecks(newChecks);
         }
@@ -66,7 +64,7 @@ const PoliticaTermos = () => {
             ].map((text, i) => (
                 <View style={styles.checkboxRow} key={i}>
                     
-                    <View style={{ alignItems: "center", justifyContent: "center", width: 24, height: 24, borderRadius: 12, backgroundColor: checks[i] ? "#6C63FF" : "#aaa" , marginRight: 8, borderWidth: 2, borderColor: "#6C63FF" }} onTouchEnd={() => toggleCheck(i)} />
+                    <View style={{ alignItems: "center", justifyContent: "center", width: 24, height: 24, borderRadius: 12, backgroundColor: checks[i] ? "#6C63FF" : "#fff" , marginRight: 8, borderWidth: 2, borderColor: "#6C63FF" }} onTouchEnd={() => toggleCheck(i)} />
 
                     <Text style={styles.checkboxText}>{text}</Text>
                 </View>

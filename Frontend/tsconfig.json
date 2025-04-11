@@ -2,7 +2,11 @@
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
     "strict": true,
-    "types": ["react-native-dotenv"], // Adiciona suporte ao @env
-    "allowSyntheticDefaultImports": true // Exemplo de outra configuração
+    "types": ["react-native-dotenv"], 
+    "allowSyntheticDefaultImports": true,
+    "paths": {
+      "@/*": ["./src/*"],
+      "styled-components": ["./node_modules/styled-components"],
+    }
   }
 }

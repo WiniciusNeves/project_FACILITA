@@ -18,7 +18,7 @@ export default function App() {
     // Simula o carregamento e navega para outra tela após 3 segundos
     const timer = setTimeout(() => {
       navigation.navigate('Onboarding');
-    }, 3000);
+    }, 5000);
 
     return () => clearTimeout(timer); // Limpa o timer ao desmontar o componente
   }, [navigation]);
