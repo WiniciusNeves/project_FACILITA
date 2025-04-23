@@ -1,25 +1,33 @@
 import React from "react";
-import { View, TextInput } from "react-native";
+import { View, TextInput, TouchableWithoutFeedback } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
-import { inputContainer, inputField, icon } from "../styles/login";
+import { inputContainer } from "../styles/auth";
 
 interface InputAuthProps extends React.ComponentProps<typeof TextInput> {
     placeholder: string;
     icon: string;
     secureTextEntry?: boolean;
-
 }
+
 export default function InputAuth({ placeholder, icon: iconName, secureTextEntry, ...rest }: InputAuthProps) {
+    let textInputRef = React.useRef<TextInput>(null);
+
     return (
-        <View style={inputContainer.base}>
-            <Icon name={iconName} size={20} color="#6C63FF" style={icon.base} />
-            <TextInput
-                style={inputField.base}
-                placeholder={placeholder}
-                placeholderTextColor="#999"
-                secureTextEntry={secureTextEntry}
-                {...rest}
-            />
-        </View>
+        <TouchableWithoutFeedback
+            onPress={() => {
+                textInputRef.current?.focus(); // Foca no TextInput ao clicar no contêiner
+            }}
+        >
+            <View style={inputContainer.base}>
+                <Icon name={iconName} size={24} color="#6C63FF" />
+                <TextInput
+                    ref={textInputRef} // Referência ao TextInput
+                    style={inputContainer.inputField}
+                    placeholder={placeholder}
+                    secureTextEntry={secureTextEntry}
+                    {...rest}
+                />
+            </View>
+        </TouchableWithoutFeedback>
     );
 }

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { View, Image, TouchableOpacity, Alert } from "react-native";
 import { launchCamera, launchImageLibrary } from "react-native-image-picker";
 import Icon from "react-native-vector-icons/Feather";
-import { profileImageContainer, profileImage } from "../styles/components/signup.js";
+import { profileImageContainer, profileImage } from "../styles/auth";
 
 export default function ProfileImagePicker() {
     const [imageUri, setImageUri] = useState(null);

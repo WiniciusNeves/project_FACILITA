@@ -1,13 +1,14 @@
 import React from "react";
 import { View, Image, Text, TouchableOpacity } from "react-native";
-import { googleButton } from "../styles/login";
-import FontAwesome from "react-native-vector-icons/FontAwesome";
+import { googleButton } from "../styles/auth";
 
 export default function GoogleButton() {
   return (
     <TouchableOpacity
       onPress={() => {}}
       style={googleButton.base}
+      activeOpacity={0.7}
+      onPressIn={() => {}}
     >
       <View style={googleButton.content}>
           <Image 
@@ -20,4 +21,3 @@ export default function GoogleButton() {
     </TouchableOpacity>
   );
 }
-
