@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import InputAuth from "../../components/InputAuth";
 import GoogleButton from "../../components/GoogleButton";
-import PrimaryButton from "../../components/PrimaryButton";
+import PrimaryButton from "../../components/AuthButton";
 import { useNavigation } from "@react-navigation/native";
 import {
     container,
@@ -18,7 +18,7 @@ import {
     forgotPassword,
     footerText,
     linkText,
-} from "../../styles/login";
+} from "../../styles/auth";
 
 interface LoginScreenProps {
     navigation: any; // Defina o tipo correto para a navegação, se possível

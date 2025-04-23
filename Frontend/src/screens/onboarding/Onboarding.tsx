@@ -6,7 +6,7 @@ import {
     TouchableOpacity,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import NextButton from "../../components/NextButton";
+import OnboardingButton from "@/components/OnboardingButton";
 import Icon from "react-native-vector-icons/MaterialIcons";
 
 // Importando cada estilo de forma individual
@@ -63,7 +63,7 @@ export default function Onboarding() {
                 jeito simples e acessível. Vamos começar?
             </Text>
 
-            <NextButton onPress={handleNext} />
+            <OnboardingButton label="Próximo" onPress={handleNext} />
         </View>
     );
 }

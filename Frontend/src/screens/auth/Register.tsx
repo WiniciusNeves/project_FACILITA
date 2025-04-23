@@ -8,16 +8,15 @@ import {
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { useNavigation } from "@react-navigation/native";
-import InputField from "../../components/InputField";
-import SubmitButton from "../../components/SubmitButton";
+import InputField from "@/components/InputAuth";
 import {
     container,
     avatar,
     avatarImage,
     avatarPlaceholder,
-    loginText,
-    linkText,
-} from "../../styles/register";
+    registerText,
+} from "../../styles/auth";
+import PrimaryButton from "@/components/AuthButton";
 
 export default function Register() {
     const navigation = useNavigation();
@@ -70,11 +69,11 @@ export default function Register() {
                 secureTextEntry
             />
 
-            <SubmitButton text="Criar" onPress={handleSubmit} />
+            <PrimaryButton label="Criar" onPress={handleSubmit} disabled={true} />
 
-            <Text style={loginText.base}>
+            <Text style={registerText.base}>
                 lembrou da sua conta?{" "}
-                <Text style={linkText.base} onPress={() => navigation.navigate("Login")}>
+                <Text style={{ fontWeight: "bold" }} onPress={() => navigation.navigate("Auth")}>
                     Login
                 </Text>
             </Text>

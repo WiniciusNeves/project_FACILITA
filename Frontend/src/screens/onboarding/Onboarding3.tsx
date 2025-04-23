@@ -5,9 +5,7 @@ import {
     Image,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import NextButton from "../../components/NextButton";
-import Icon from "react-native-vector-icons/MaterialIcons";
-import BackButton from "../../components/BackButton";
+import OnboardingButton from "@/components/OnboardingButton";
 
 // Importando os estilos nomeados
 import {
@@ -53,8 +51,8 @@ export default function Onboarding3() {
             </Text>
 
             <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-                <BackButton onPress={handleBack} />
-                <NextButton onPress={handleNext} />
+                <OnboardingButton label="Anterior" onPress={handleBack} />
+                <OnboardingButton label="Próximo" onPress={handleNext} />
             </View>
         </View>
     );
