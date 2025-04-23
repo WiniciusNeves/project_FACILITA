@@ -87,3 +87,20 @@ export const description = StyleSheet.create({
         marginVertical: 25,
     },
 });
+
+export const button = StyleSheet.create({
+    base: {
+      backgroundColor: "#6C63FF",
+      borderRadius: 8,
+      paddingVertical: 6,
+      marginBottom: 12,
+      width: "40%",
+      alignSelf: "flex-end",
+      marginTop: 24,
+    },
+    text: {
+      color: "#FFF",
+      textAlign: "center",
+      fontSize: 16,
+    },
+  });
