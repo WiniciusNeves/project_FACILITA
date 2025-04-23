@@ -185,3 +185,57 @@ export const profileImage = StyleSheet.create({
       alignItems: "center",
   },
 });
+
+// Modal styles
+export const modalStyles = StyleSheet.create({
+    overlay: {
+        flex: 1,
+        backgroundColor: "rgba(0, 0, 0, 0.5)",
+        justifyContent: "flex-end",
+        alignItems: "center",
+    },
+    container: {
+        width: "90%",
+        height: "50%",
+        backgroundColor: "#FFF",
+        borderTopLeftRadius: 16,
+        borderTopRightRadius: 16,
+        padding: 24,
+        alignItems: "center",
+    },
+    closeButton: {
+        alignSelf: "flex-end",
+    },
+    closeText: {
+        fontSize: 18,
+        fontWeight: "bold",
+    },
+    title: {
+        fontSize: 18,
+        fontWeight: "bold",
+        marginBottom: 12,
+        textAlign: "center",
+    },
+    description: {
+        fontSize: 14,
+        textAlign: "center",
+        marginBottom: 16,
+        color: "#333",
+        lineHeight: 20,
+    },
+});
+
+export const bulletList = StyleSheet.create({
+  base: {
+      marginVertical: 12,
+      marginTop: 0,
+  },
+  bulletItem: {
+      fontSize: 14,
+      color: "#999",
+      marginBottom: 4,
+  },
+  valid: {
+      color: "#6C63FF", // Cor para itens válidos
+  },
+});

@@ -7,6 +7,7 @@ import Onboarding2 from './src/screens/onboarding/Onboarding2';
 import Onboarding3 from './src/screens/onboarding/Onboarding3';
 import Policy from './src/screens/Policy';
 import AuthScreen from './src/screens/Auth';
+import RestorePassword from '@/screens/RestorePassword';
 
 import Login from '@/screens/auth/login';
 import Register from '@/screens/auth/Register';
@@ -23,6 +24,7 @@ export default function AppNavigator() {
         <Stack.Screen name="Onboarding3" component={Onboarding3} options={{ headerShown: false }} />
         <Stack.Screen name="Policy" component={Policy} options={{ headerShown: false }} />
         <Stack.Screen name="AuthScreen" component={AuthScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="RestorePassword" component={RestorePassword} options={{ headerShown: false }} />
         <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
         <Stack.Screen name="Register" component={Register} options={{ headerShown: false }} />
   

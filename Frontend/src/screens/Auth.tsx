@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
     View,
     Text,
@@ -20,9 +20,27 @@ import {
 import GoogleButton from "@/components/GoogleButton";
 import InputAuth from "@/components/InputAuth";
 import PrimaryButton from "@/components/AuthButton";
+import ModalForgotPassword from "@/components/ModalForgotPassword";
+import ModalSuccess from "@/components/ModalSuccess";
 import { ScrollView } from "react-native";
+import { useRoute } from "@react-navigation/native";
 
 const AuthScreen = () => {
+    const [forgotPasswordVisible, setForgotPasswordVisible] = useState(false);
+    const [successVisible, setSuccessVisible] = useState(false);
+    const route = useRoute();
+
+    useEffect(() => {
+        if (route.params?.showSuccessModal) {
+            setSuccessVisible(true);
+        }
+    }, [route.params]);
+
+    const handleForgotPassword = (email: string) => {
+        console.log("E-mail enviado para:", email);
+        setSuccessVisible(true);
+    };
+
     return (
         <ScrollView
             contentContainerStyle={{ flexGrow: 1 }}
@@ -53,7 +71,10 @@ const AuthScreen = () => {
                         secureTextEntry
                     />
 
-                    <TouchableOpacity activeOpacity={0.7} onPress={() => {}}>
+                    <TouchableOpacity
+                        activeOpacity={0.7}
+                        onPress={() => setForgotPasswordVisible(true)}
+                    >
                         <Text style={forgotPassword.base}>
                             esqueceu a sua <Text style={{ fontWeight: "bold" }}>senha?</Text>
                         </Text>
@@ -66,6 +87,17 @@ const AuthScreen = () => {
                             se não tiver conta <Text style={{ fontWeight: "bold" }}>registre agora!</Text>
                         </Text>
                     </TouchableOpacity>
+
+                    <ModalForgotPassword
+                        visible={forgotPasswordVisible}
+                        onClose={() => setForgotPasswordVisible(false)}
+                        onSubmit={handleForgotPassword}
+                    />
+
+                    <ModalSuccess
+                        visible={successVisible}
+                        onClose={() => setSuccessVisible(false)}
+                    />
                 </View>
             </TouchableWithoutFeedback>
         </ScrollView>
