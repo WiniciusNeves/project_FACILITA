@@ -15,7 +15,7 @@ import {
     title,
     divider,
     forgotPassword,
-    registerText,
+    captionText,
 } from "@/styles/auth";
 import GoogleButton from "@/components/GoogleButton";
 import InputAuth from "@/components/InputAuth";
@@ -23,12 +23,20 @@ import PrimaryButton from "@/components/AuthButton";
 import ModalForgotPassword from "@/components/ModalForgotPassword";
 import ModalSuccess from "@/components/ModalSuccess";
 import { ScrollView } from "react-native";
-import { useRoute } from "@react-navigation/native";
+import { useRoute, RouteProp } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
+
+type AuthScreenRouteParams = {
+    params?: {
+        showSuccessModal?: boolean;
+    };
+};
 
 const AuthScreen = () => {
+    const route = useRoute<RouteProp<AuthScreenRouteParams>>();
     const [forgotPasswordVisible, setForgotPasswordVisible] = useState(false);
     const [successVisible, setSuccessVisible] = useState(false);
-    const route = useRoute();
+    const navigation = useNavigation();
 
     useEffect(() => {
         if (route.params?.showSuccessModal) {
@@ -41,13 +49,17 @@ const AuthScreen = () => {
         setSuccessVisible(true);
     };
 
+    const handleRegister = () => {
+        navigation.navigate("Register");
+    }
+
     return (
         <ScrollView
             contentContainerStyle={{ flexGrow: 1 }}
             keyboardShouldPersistTaps="handled"
         >
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-                <View style={container.base}>
+                <View style={[container.base, {paddingTop: 60}]}>
                     <Image source={require("../assets/img/authLogo.png")} style={logo.base} />
                     <Text style={title.base}>Bem vindo de volta</Text>
                     <Text style={subtitle.base}>
@@ -61,7 +73,7 @@ const AuthScreen = () => {
 
                     <InputAuth
                         placeholder="Email"
-                        icon="email"
+                        icon="envelope"
                         keyboardType="email-address"
                     />
 
@@ -74,6 +86,7 @@ const AuthScreen = () => {
                     <TouchableOpacity
                         activeOpacity={0.7}
                         onPress={() => setForgotPasswordVisible(true)}
+                        style={{ alignSelf: "flex-end" }}
                     >
                         <Text style={forgotPassword.base}>
                             esqueceu a sua <Text style={{ fontWeight: "bold" }}>senha?</Text>
@@ -82,8 +95,12 @@ const AuthScreen = () => {
 
                     <PrimaryButton label="Entrar" onPress={() => {}} disabled={false} />
 
-                    <TouchableOpacity activeOpacity={0.7} onPress={() => {}}>
-                        <Text style={registerText.base}>
+                    <TouchableOpacity
+                        activeOpacity={0.7}
+                        onPress={handleRegister}
+                        style={{ alignSelf: "center" }}
+                    >
+                        <Text style={captionText.base}>
                             se não tiver conta <Text style={{ fontWeight: "bold" }}>registre agora!</Text>
                         </Text>
                     </TouchableOpacity>

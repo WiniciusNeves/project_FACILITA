@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { View, Text } from "react-native";
 import InputAuth from "@/components/InputAuth";
 import AuthButton from "@/components/AuthButton";
-import { container, title, subtitle, bulletList } from "@/styles/auth";
+import { container, subtitle, highlightedText, bulletList } from "@/styles/auth";
 import { useNavigation } from "@react-navigation/native";
 
 export default function RestorePassword() {
@@ -44,9 +44,8 @@ export default function RestorePassword() {
 
     return (
         <View style={container.base}>
-            <Text style={title.base}>Restaure sua conta</Text>
             <Text style={subtitle.base}>
-                Crie uma nova senha para acessar sua conta com segurança. Certifique-se de escolher uma senha forte, com pelo menos 8 caracteres, incluindo letras, números e símbolos
+                Crie uma nova senha para acessar sua conta com segurança. Certifique-se de escolher uma senha forte, <Text style={highlightedText.base}>com pelo menos 8 caracteres, incluindo letras, números e símbolos.</Text>
             </Text>
             <InputAuth
                 placeholder="Senha"

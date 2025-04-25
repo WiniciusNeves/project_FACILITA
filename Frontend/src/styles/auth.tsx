@@ -5,7 +5,9 @@ export const container = StyleSheet.create({
     flex: 1,
     backgroundColor: "#FFF",
     paddingHorizontal: 24,
-    paddingTop: 60,
+    alignContent: "flex-start",
+    justifyContent: "flex-start",
+    paddingTop: 24,
   },
 });
 
@@ -32,11 +34,19 @@ export const title = StyleSheet.create({
 export const subtitle = StyleSheet.create({
   base: {
     textAlign: "center",
-    fontSize: 14,
+    fontSize: 16,
     color: "#333",
     marginBottom: 16,
     paddingHorizontal: 6,
     lineHeight: 20,
+  },
+});
+
+export const highlightedText = StyleSheet.create({
+  base: {
+    color: "#6C63FF",
+    fontWeight: "bold",
+    fontSize: 16,
   },
 });
 
@@ -107,8 +117,9 @@ export const inputContainer = StyleSheet.create({
 export const forgotPassword = StyleSheet.create({
   base: {
     textAlign: "right",
+    alignSelf: "flex-end",
     color: "#6C63FF",
-    fontSize: 12,
+    fontSize: 14,
     marginBottom: 16,
     marginRight: 30,
     textDecorationLine: "underline",
@@ -131,38 +142,25 @@ export const primaryButton = StyleSheet.create({
   },
 });
 
-export const registerText = StyleSheet.create({
+export const captionText = StyleSheet.create({
   base: {
     textAlign: "center",
+    alignSelf: "center",
+    width: "auto",
     color: "#6C63FF",
-    fontSize: 12,
+    fontSize: 14,
     textDecorationLine: "underline",
   },
 });
 
 // Register styles
-export const avatar = StyleSheet.create({
-  base: {
-    marginBottom: 24,
-  },
-});
-
 export const avatarImage = StyleSheet.create({
   base: {
-    width: 100,
-    height: 100,
+    width: 150,
+    height: 150,
     borderRadius: 50,
-  },
-});
-
-export const avatarPlaceholder = StyleSheet.create({
-  base: {
-    width: 100,
-    height: 100,
-    borderRadius: 50,
-    backgroundColor: "#e0e0e0",
-    justifyContent: "center",
-    alignItems: "center",
+    alignSelf: "center",
+    marginBottom: 24,
   },
 });
 
@@ -237,5 +235,28 @@ export const bulletList = StyleSheet.create({
   },
   valid: {
       color: "#6C63FF", // Cor para itens válidos
+  },
+});
+
+export const verifyEmailInputs = StyleSheet.create({
+  base: {
+      flexDirection: "row",
+      justifyContent: "space-between",
+      marginVertical: 16,
+  },
+  input: {
+      width: 80,
+      height: 80,
+      borderWidth: 1,
+      borderColor: "#6C63FF",
+      textAlign: "center",
+      fontSize: 24,
+      color: "#000",
+      backgroundColor: "#FFF",
+      borderRadius: 8,
+      marginBottom: 20,
+      boxShadow: "0 4px 4px rgba(108, 99, 255, 1)",
+      alignSelf: "center",
+      alignItems: "center",
   },
 });

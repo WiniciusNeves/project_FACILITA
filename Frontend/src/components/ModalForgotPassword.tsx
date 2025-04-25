@@ -8,6 +8,7 @@ import { useNavigation } from "@react-navigation/native";
 interface ModalForgotPasswordProps {
     visible: boolean;
     onClose: () => void;
+    onSubmit?: (email: string) => void;
 }
 
 export default function ModalForgotPassword({ visible, onClose }: ModalForgotPasswordProps) {
@@ -33,7 +34,7 @@ export default function ModalForgotPassword({ visible, onClose }: ModalForgotPas
                     </Text>
                     <InputAuth
                         placeholder="Email"
-                        icon="email"
+                        icon="envelope"
                         keyboardType="email-address"
                         value={email}
                         onChangeText={setEmail}

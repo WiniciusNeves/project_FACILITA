@@ -8,9 +8,9 @@ import Onboarding3 from './src/screens/onboarding/Onboarding3';
 import Policy from './src/screens/Policy';
 import AuthScreen from './src/screens/Auth';
 import RestorePassword from '@/screens/RestorePassword';
-
-import Login from '@/screens/auth/login';
-import Register from '@/screens/auth/Register';
+import Register from '@/screens/Register/Register';
+import EmailVerification from '@/screens/Register/EmailVerification';
+import CompleteRegistration from '@/screens/Register/CompleteRegistration';
 
 const Stack = createStackNavigator();
 
@@ -24,10 +24,10 @@ export default function AppNavigator() {
         <Stack.Screen name="Onboarding3" component={Onboarding3} options={{ headerShown: false }} />
         <Stack.Screen name="Policy" component={Policy} options={{ headerShown: false }} />
         <Stack.Screen name="AuthScreen" component={AuthScreen} options={{ headerShown: false }} />
-        <Stack.Screen name="RestorePassword" component={RestorePassword} options={{ headerShown: false }} />
-        <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
-        <Stack.Screen name="Register" component={Register} options={{ headerShown: false }} />
-  
+        <Stack.Screen name="RestorePassword" component={RestorePassword} options={{ headerShown: true, headerTitle: "Restaure sua conta" }} />
+        <Stack.Screen name="Register" component={Register} options={{ headerShown: true, headerTitle: "Crie sua conta" }} />
+        <Stack.Screen name="EmailVerification" component={EmailVerification} options={{ headerShown: true, headerTitle: "Verifique seu e-mail" }} />
+        <Stack.Screen name="CompleteRegistration" component={CompleteRegistration} options={{ headerShown: true, headerTitle: "Complete seu cadastro" }} />
         
       </Stack.Navigator>
     </NavigationContainer>

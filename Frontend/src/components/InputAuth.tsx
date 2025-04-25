@@ -1,6 +1,6 @@
 import React from "react";
 import { View, TextInput, TouchableWithoutFeedback } from "react-native";
-import Icon from "react-native-vector-icons/MaterialIcons";
+import Icon from "react-native-vector-icons/FontAwesome6";
 import { inputContainer } from "../styles/auth";
 
 interface InputAuthProps extends React.ComponentProps<typeof TextInput> {
