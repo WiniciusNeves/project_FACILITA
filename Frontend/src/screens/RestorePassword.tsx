@@ -9,11 +9,18 @@ import {
   bulletList,
 } from "@/styles/auth";
 import { useNavigation } from "@react-navigation/native";
+import { AuthStackParamList } from "@/navigation/types";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+
+type RestorePasswordScreenNavigationProp = NativeStackNavigationProp<
+  AuthStackParamList,
+  "RestorePassword"
+>;
 
 export default function RestorePassword() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const navigation = useNavigation();
+  const navigation = useNavigation<RestorePasswordScreenNavigationProp>();
 
   // Estados para os requisitos da senha
   const [requirements, setRequirements] = useState({
