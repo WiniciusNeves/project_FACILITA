@@ -32,7 +32,7 @@ function AuthNavigator() {
       <AuthStack.Screen
         name="RestorePassword"
         component={RestorePassword}
-        options={{ headerShown: true, title: "Restraurar conta" }}
+        options={{ headerShown: true, title: "Restaurar conta" }}
       />
       <AuthStack.Screen
         name="Register"
