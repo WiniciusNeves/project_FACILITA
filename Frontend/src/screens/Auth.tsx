@@ -18,8 +18,8 @@ import {
   captionText,
 } from "@/styles/auth";
 import GoogleButton from "@/components/GoogleButton";
-import InputAuth from "@/components/InputAuth";
-import PrimaryButton from "@/components/PrimaryButton";
+import InputField from "@/components/common/InputField";
+import PrimaryButton from "@/components/common/PrimaryButton";
 import ModalForgotPassword from "@/components/ModalForgotPassword";
 import ModalSuccess from "@/components/ModalSuccess";
 import { ScrollView } from "react-native";
@@ -82,13 +82,21 @@ const AuthScreen = () => {
 
           <Text style={divider.base}>OU</Text>
 
-          <InputAuth
+          <InputField
             placeholder="Email"
             icon="envelope"
             keyboardType="email-address"
+            value={""}
+            onChangeText={() => {}}
           />
 
-          <InputAuth placeholder="Senha" icon="lock" secureTextEntry />
+          <InputField
+            placeholder="Senha"
+            icon="lock"
+            secureTextEntry
+            value={""}
+            onChangeText={() => {}}
+          />
 
           <TouchableOpacity
             activeOpacity={0.7}

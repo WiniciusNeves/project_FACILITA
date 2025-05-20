@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, Text } from "react-native";
-import InputAuth from "@/components/InputAuth";
-import PrimaryButton from "@/components/PrimaryButton";
+import InputField from "@/components/common/InputField";
+import PrimaryButton from "@/components/common/PrimaryButton";
 import {
   container,
   subtitle,
@@ -63,7 +63,7 @@ export default function RestorePassword() {
           com pelo menos 8 caracteres, incluindo letras, números e símbolos.
         </Text>
       </Text>
-      <InputAuth
+      <InputField
         placeholder="Senha"
         icon="lock"
         secureTextEntry
@@ -105,7 +105,7 @@ export default function RestorePassword() {
           • Deve conter pelo menos 1 caractere especial (!@#$%&*)
         </Text>
       </View>
-      <InputAuth
+      <InputField
         placeholder="Confirmar nova senha"
         icon="lock"
         secureTextEntry

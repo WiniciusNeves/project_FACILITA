@@ -12,8 +12,8 @@ import {
   StyleSheet,
 } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
-import InputAuth from "@/components/InputAuth";
-import PrimaryButton from "@/components/PrimaryButton";
+import InputField from "@/components/common/InputField";
+import PrimaryButton from "@/components/common/PrimaryButton";
 import Icon from "react-native-vector-icons/FontAwesome6";
 import {
   container,
@@ -95,7 +95,7 @@ export default function CompleteRegistration() {
             </Text>
           </Text>
 
-          <InputAuth
+          <InputField
             placeholder="CPF/CNPJ"
             icon="id-card"
             value={cpfCnpj}

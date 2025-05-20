@@ -3,7 +3,7 @@ import { View, Text, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { AuthStackParamList } from "@/navigation/types";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import PrimaryButton from "@/components/PrimaryButton";
+import PrimaryButton from "@/components/common/PrimaryButton";
 
 // Importando os estilos nomeados
 import {

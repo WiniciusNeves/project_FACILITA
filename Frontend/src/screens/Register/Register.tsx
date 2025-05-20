@@ -15,8 +15,8 @@ import {
   highlightedText,
 } from "@/styles/auth";
 
-import InputAuth from "@/components/InputAuth";
-import PrimaryButton from "@/components/PrimaryButton";
+import InputField from "@/components/common/InputField";
+import PrimaryButton from "@/components/common/PrimaryButton";
 import { useNavigation } from "@react-navigation/native";
 import { AuthStackParamList } from "@/navigation/types";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
@@ -81,13 +81,13 @@ export default function Register() {
             source={require("../../assets/img/avatar1.png")}
             style={avatarImage.base}
           />
-          <InputAuth
+          <InputField
             placeholder="Nome"
             icon="circle-user"
             value={name}
             onChangeText={setName}
           />
-          <InputAuth
+          <InputField
             placeholder="E-mail"
             icon="envelope"
             keyboardType="email-address"
@@ -95,21 +95,21 @@ export default function Register() {
             value={email}
             onChangeText={setEmail}
           />
-          <InputAuth
+          <InputField
             placeholder="Telefone"
             icon="phone"
             keyboardType="phone-pad"
             value={phone}
             onChangeText={setPhone}
           />
-          <InputAuth
+          <InputField
             placeholder="Senha"
             icon="lock"
             secureTextEntry={true}
             value={password}
             onChangeText={setPassword}
           />
-          <InputAuth
+          <InputField
             placeholder="Confirmar senha"
             icon="lock"
             secureTextEntry={true}
