@@ -3,6 +3,8 @@ import { View, Text, Image, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import PrimaryButton from "@/components/PrimaryButton";
 import Icon from "react-native-vector-icons/MaterialIcons";
+import { AuthStackParamList } from "@/navigation/types";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 // Importando cada estilo de forma individual
 import {
@@ -18,8 +20,13 @@ import {
   description,
 } from "../../styles/onboarding";
 
+type OnboardingScreenNavigationProp = NativeStackNavigationProp<
+  AuthStackParamList,
+  "Onboarding"
+>;
+
 export default function Onboarding() {
-  const navigation = useNavigation();
+  const navigation = useNavigation<OnboardingScreenNavigationProp>();
 
   const handleNext = () => {
     navigation.navigate("Onboarding2");

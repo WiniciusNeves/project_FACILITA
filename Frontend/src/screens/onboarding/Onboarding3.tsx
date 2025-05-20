@@ -1,6 +1,8 @@
 import React from "react";
 import { View, Text, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { AuthStackParamList } from "@/navigation/types";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import PrimaryButton from "@/components/PrimaryButton";
 
 // Importando os estilos nomeados
@@ -14,8 +16,13 @@ import {
   description,
 } from "../../styles/onboarding";
 
+type Onboarding3ScreenNavigationProp = NativeStackNavigationProp<
+  AuthStackParamList,
+  "Onboarding3"
+>;
+
 export default function Onboarding3() {
-  const navigation = useNavigation();
+  const navigation = useNavigation<Onboarding3ScreenNavigationProp>();
 
   const handleBack = () => {
     navigation.navigate("Onboarding2");
