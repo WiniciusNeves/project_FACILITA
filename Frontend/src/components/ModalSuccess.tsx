@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, Modal, TouchableOpacity } from "react-native";
-import AuthButton from "./PrimaryButton";
+import AuthButton from "./common/PrimaryButton";
 import { modalStyles } from "@/styles/auth";
 
 interface ModalSuccessProps {

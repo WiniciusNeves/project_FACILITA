@@ -1,9 +1,16 @@
 import React, { useState } from "react";
 import { View, Text, Modal, TouchableOpacity } from "react-native";
-import InputAuth from "./InputAuth";
-import AuthButton from "./PrimaryButton";
+import InputField from "@/components/common/InputField";
+import AuthButton from "./common/PrimaryButton";
 import { modalStyles } from "@/styles/auth";
 import { useNavigation } from "@react-navigation/native";
+import { AuthStackParamList } from "../navigation/types";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+
+type LoginScreenNavigationProp = NativeStackNavigationProp<
+  AuthStackParamList,
+  "RestorePassword"
+>;
 
 interface ModalForgotPasswordProps {
   visible: boolean;
@@ -16,7 +23,7 @@ export default function ModalForgotPassword({
   onClose,
 }: ModalForgotPasswordProps) {
   const [email, setEmail] = useState("");
-  const navigation = useNavigation();
+  const navigation = useNavigation<LoginScreenNavigationProp>();
 
   const handleSendLink = () => {
     console.log("Link enviado para:", email);
@@ -37,8 +44,8 @@ export default function ModalForgotPassword({
             senha. Verifique sua caixa de entrada e siga as instruções para
             criar uma nova senha com segurança.
           </Text>
-          <InputAuth
-            placeholder="Email"
+          <InputField
+            placeholder="Digite seu e-mail"
             icon="envelope"
             keyboardType="email-address"
             value={email}
