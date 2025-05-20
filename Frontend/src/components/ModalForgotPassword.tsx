@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, Modal, TouchableOpacity } from "react-native";
 import InputField from "@/components/common/InputField";
-import AuthButton from "./common/PrimaryButton";
+import AuthButton from "@/components/common/PrimaryButton";
 import { modalStyles } from "@/styles/auth";
 import { useNavigation } from "@react-navigation/native";
 import { AuthStackParamList } from "../navigation/types";
