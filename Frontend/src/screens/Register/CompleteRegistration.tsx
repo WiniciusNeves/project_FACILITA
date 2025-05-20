@@ -24,6 +24,13 @@ import {
   primaryButton,
 } from "@/styles/auth";
 import { useNavigation } from "@react-navigation/native";
+import { AuthStackParamList } from "@/navigation/types";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+
+type CompleteRegistrationScreenNavigationProp = NativeStackNavigationProp<
+  AuthStackParamList,
+  "CompleteRegistration"
+>;
 
 export default function CompleteRegistration() {
   const [cpfCnpj, setCpfCnpj] = useState("");
@@ -31,7 +38,7 @@ export default function CompleteRegistration() {
   const [selectedProfessions, setSelectedProfessions] = useState<string[]>([]);
   const [modalVisible, setModalVisible] = useState(false);
   const [showDatePicker, setShowDatePicker] = useState(false);
-  const navigation = useNavigation();
+  const navigation = useNavigation<CompleteRegistrationScreenNavigationProp>();
 
   const professions = [
     "Encanador",
