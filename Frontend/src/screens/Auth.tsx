@@ -19,7 +19,7 @@ import {
 } from "@/styles/auth";
 import GoogleButton from "@/components/GoogleButton";
 import InputAuth from "@/components/InputAuth";
-import PrimaryButton from "@/components/AuthButton";
+import PrimaryButton from "@/components/PrimaryButton";
 import ModalForgotPassword from "@/components/ModalForgotPassword";
 import ModalSuccess from "@/components/ModalSuccess";
 import { ScrollView } from "react-native";
