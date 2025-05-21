@@ -16,7 +16,7 @@ import EmailVerification from "../screens/Register/EmailVerification";
 import CompleteRegistration from "../screens/Register/CompleteRegistration";
 
 // Futuro: telas principais do app
-// import Home from "../screens/Home";
+import Home from "../screens/Home/Home";
 
 const AuthStack = createNativeStackNavigator<AuthStackParamList>();
 const MainStack = createNativeStackNavigator<MainStackParamList>();
@@ -56,7 +56,7 @@ function AuthNavigator() {
 function MainNavigator() {
   return (
     <MainStack.Navigator screenOptions={{ headerShown: false }}>
-      {/* <MainStack.Screen name="Home" component={Home} /> */}
+      <MainStack.Screen name="Home" component={Home} />
     </MainStack.Navigator>
   );
 }
@@ -64,7 +64,7 @@ function MainNavigator() {
 const AppNavigator = () => {
   // Aqui você pode adicionar lógica de autenticação futuramente
   // Exemplo: const isLoggedIn = useAuth();
-  const isLoggedIn = false; // Troque para lógica real futuramente
+  const isLoggedIn = true; // Troque para lógica real futuramente
   return (
     <NavigationContainer>
       {isLoggedIn ? <MainNavigator /> : <AuthNavigator />}

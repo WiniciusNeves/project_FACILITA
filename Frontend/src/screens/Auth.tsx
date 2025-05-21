@@ -25,12 +25,17 @@ import ModalSuccess from "@/components/ModalSuccess";
 import { ScrollView } from "react-native";
 import { useRoute, RouteProp } from "@react-navigation/native";
 import { useNavigation } from "@react-navigation/native";
-import { AuthStackParamList } from "@/navigation/types";
+import { AuthStackParamList, MainStackParamList } from "@/navigation/types";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 type LoginScreenNavigationProp = NativeStackNavigationProp<
   AuthStackParamList,
   "AuthScreen"
+>;
+
+type MainScreenNavigationProp = NativeStackNavigationProp<
+  MainStackParamList,
+  "Home"
 >;
 
 type AuthScreenRouteParams = {
@@ -44,12 +49,17 @@ const AuthScreen = () => {
   const [forgotPasswordVisible, setForgotPasswordVisible] = useState(false);
   const [successVisible, setSuccessVisible] = useState(false);
   const navigation = useNavigation<LoginScreenNavigationProp>();
+  const mainNavigation = useNavigation<MainScreenNavigationProp>();
 
   useEffect(() => {
     if (route.params?.showSuccessModal) {
       setSuccessVisible(true);
     }
   }, [route.params]);
+
+  const handleLogin = () => {
+    mainNavigation.navigate("Home");
+  };
 
   const handleForgotPassword = (email: string) => {
     console.log("E-mail enviado para:", email);
@@ -108,7 +118,11 @@ const AuthScreen = () => {
             </Text>
           </TouchableOpacity>
 
-          <PrimaryButton label="Entrar" onPress={() => {}} disabled={false} />
+          <PrimaryButton
+            label="Entrar"
+            onPress={handleLogin}
+            disabled={false}
+          />
 
           <TouchableOpacity
             activeOpacity={0.7}
