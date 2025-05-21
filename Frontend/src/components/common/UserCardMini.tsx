@@ -36,8 +36,8 @@ const UserCardMini: React.FC<UserCardMiniProps> = ({
       <View style={userCardMiniStyles.info}>
         <Text style={userCardMiniStyles.name}>{name}</Text>
         <View style={userCardMiniStyles.tagsRow}>
-          {tags.map((tag, idx) => (
-            <Tag key={idx} label={tag.label} color={tag.color} />
+          {tags.map((tag) => (
+            <Tag key={tag.label} label={tag.label} color={tag.color} />
           ))}
           <TouchableOpacity
             style={userCardMiniStyles.moreInfo}
