@@ -62,7 +62,6 @@ const styles = StyleSheet.create({
     paddingTop: 40,
   },
   innerContainer: {
-    flexGrow: 1,
     flex: 1,
     justifyContent: "flex-start",
     paddingHorizontal: 16,
