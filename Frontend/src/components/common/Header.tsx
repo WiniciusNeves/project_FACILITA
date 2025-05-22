@@ -1,11 +1,11 @@
 import React from "react";
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, ImageSourcePropType } from "react-native";
 import { headerStyles } from "./Header.style";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 interface HeaderProps {
   title: string;
-  photo: any;
+  photo: ImageSourcePropType;
 }
 
 const Header: React.FC<HeaderProps> = ({ title, photo }) => {
