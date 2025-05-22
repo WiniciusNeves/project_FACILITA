@@ -4,6 +4,7 @@ import UserModal from "@/components/common/UserModal";
 import BottomTabMenu from "@/components/common/BottomTabMenu";
 import React, { useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
+import Header from "@/components/common/Header";
 
 export default function Home() {
   const [modalVisible, setModalVisible] = useState(false);
@@ -14,7 +15,7 @@ export default function Home() {
       { label: "tag2", color: "#f4f4f4" },
       { label: "tag3", color: "#FF5733" },
     ],
-    rating: 5,
+    rating: 4,
     description:
       "Sou Luiz Assis, profissional com experiência em diversas áreas. Sempre priorizo a qualidade e a satisfação do cliente.",
     photoUrl: undefined,
@@ -30,6 +31,10 @@ export default function Home() {
   return (
     <View style={styles.container}>
       <View style={styles.innerContainer}>
+        <Header
+          title="Página inicial"
+          photo={selectedUser.photoUrl || require("@/assets/img/avatar1.png")}
+        />
         <Text style={styles.title}>Home Screen</Text>
         <Text style={styles.description}>Welcome to the Home Screen!</Text>
         <UserCardMini
