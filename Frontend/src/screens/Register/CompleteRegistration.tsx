@@ -7,14 +7,15 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   TouchableOpacity,
-  Modal,
-  FlatList,
   StyleSheet,
 } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import InputField from "@/components/common/InputField";
 import PrimaryButton from "@/components/common/PrimaryButton";
 import Icon from "react-native-vector-icons/FontAwesome6";
+import Tag from "@/components/common/Tag";
+import ProfessionSelectModal from "@/components/common/ProfessionSelectModal";
+import { jobTagTemplates } from "@/utils/templates/jobTagTemplates";
 import {
   container,
   subtitle,
@@ -36,16 +37,21 @@ export default function CompleteRegistration() {
   const [cpfCnpj, setCpfCnpj] = useState("");
   const [birthDate, setBirthDate] = useState<Date | null>(null);
   const [selectedProfessions, setSelectedProfessions] = useState<string[]>([]);
-  const [modalVisible, setModalVisible] = useState(false);
+  const [modalProfVisible, setModalProfVisible] = useState(false);
   const [showDatePicker, setShowDatePicker] = useState(false);
   const navigation = useNavigation<CompleteRegistrationScreenNavigationProp>();
 
   const professions = [
     "Encanador",
     "Jardineiro",
+    "Mecânico",
+    "Motoboy",
+    "Pedreiro",
     "Eletricista",
     "Pintor",
-    "Pedreiro",
+    "Diarista",
+    "Babá",
+    "Cozinheiro",
   ];
 
   const toggleProfession = (profession: string) => {
@@ -109,7 +115,7 @@ export default function CompleteRegistration() {
           {/* Botão para abrir o modal */}
           <TouchableOpacity
             style={[inputContainer.base, { padding: 12 }]}
-            onPress={() => setModalVisible(true)}
+            onPress={() => setModalProfVisible(true)}
           >
             <Text
               style={{ color: selectedProfessions.length ? "#000" : "#999" }}
@@ -124,66 +130,29 @@ export default function CompleteRegistration() {
           <View
             style={{ flexDirection: "row", flexWrap: "wrap", marginBottom: 16 }}
           >
-            {selectedProfessions.map((profession) => (
-              <Text
-                key={profession}
-                style={{
-                  backgroundColor: "#6C63FF",
-                  color: "#FFF",
-                  paddingHorizontal: 12,
-                  paddingVertical: 6,
-                  borderRadius: 16,
-                  marginRight: 8,
-                  marginBottom: 8,
-                }}
-              >
-                {profession}
-              </Text>
-            ))}
+            {selectedProfessions.map((profession) => {
+              const tagTemplate = jobTagTemplates.find(
+                (t) => t.label === profession
+              );
+              return (
+                <Tag
+                  key={profession}
+                  label={profession}
+                  color={tagTemplate ? tagTemplate.color : "#6C63FF"}
+                  style={{ marginRight: 8, marginBottom: 8 }}
+                />
+              );
+            })}
           </View>
 
           {/* Modal para seleção de profissões */}
-          <Modal
-            visible={modalVisible}
-            transparent={true}
-            animationType="slide"
-            onRequestClose={() => setModalVisible(false)}
-          >
-            <View style={styles.modalContainer}>
-              <View style={styles.modalContent}>
-                <FlatList
-                  data={professions}
-                  keyExtractor={(item) => item}
-                  renderItem={({ item }) => (
-                    <TouchableOpacity
-                      style={[
-                        styles.option,
-                        selectedProfessions.includes(item) &&
-                          styles.optionSelected,
-                      ]}
-                      onPress={() => toggleProfession(item)}
-                    >
-                      <Text
-                        style={[
-                          styles.optionText,
-                          selectedProfessions.includes(item) &&
-                            styles.optionTextSelected,
-                        ]}
-                      >
-                        {item}
-                      </Text>
-                    </TouchableOpacity>
-                  )}
-                />
-                <TouchableOpacity
-                  style={styles.closeButton}
-                  onPress={() => setModalVisible(false)}
-                >
-                  <Text style={styles.closeButtonText}>Fechar</Text>
-                </TouchableOpacity>
-              </View>
-            </View>
-          </Modal>
+          <ProfessionSelectModal
+            visible={modalProfVisible}
+            professions={professions}
+            selectedProfessions={selectedProfessions}
+            onToggle={toggleProfession}
+            onClose={() => setModalProfVisible(false)}
+          />
 
           {/* Campo de data com calendário */}
           <TouchableOpacity
