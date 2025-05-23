@@ -3,9 +3,6 @@ import { StyleSheet } from "react-native";
 export const bottomTabMenuStyles = StyleSheet.create({
   container: {
     width: "100%",
-    position: "absolute",
-    bottom: 0,
-    left: 0,
     flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "center",
