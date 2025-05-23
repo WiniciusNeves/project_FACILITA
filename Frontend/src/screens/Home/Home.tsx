@@ -1,62 +1,109 @@
-import Tag from "@/components/common/Tag";
+import React, { useState } from "react";
+import { View, Text, StyleSheet, Image } from "react-native";
+import Header from "@/components/common/Header";
 import UserCardMini from "@/components/common/UserCardMini";
 import UserModal from "@/components/common/UserModal";
 import BottomTabMenu from "@/components/common/BottomTabMenu";
-import React, { useState } from "react";
-import { View, Text, StyleSheet } from "react-native";
-import Header from "@/components/common/Header";
+import SearchInput from "@/components/common/SearchInput";
+import ProfessionTagsList from "@/components/common/ProfessionTagsList";
+import ProfessionSelectModal from "@/components/common/ProfessionSelectModal";
+import { jobTagTemplates } from "@/utils/templates/jobTagTemplates";
+import {
+  FlatList,
+  Gesture,
+  GestureHandlerRootView,
+} from "react-native-gesture-handler";
 
 export default function Home() {
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedUser, setSelectedUser] = useState({
-    name: "Luiz Assis",
-    tags: [
-      { label: "tag1", color: "#FF5733" },
-      { label: "tag2", color: "#f4f4f4" },
-      { label: "tag3", color: "#FF5733" },
-    ],
+    name: "Ronando Jubileu",
+    tags: ["Eletricista", "Cozinheiro", "Camioneiro"],
     rating: 4,
     description:
-      "Sou Luiz Assis, profissional com experiência em diversas áreas. Sempre priorizo a qualidade e a satisfação do cliente.",
+      "Sou Ronando Jubileu, profissional com experiência em diversas áreas. Sempre priorizo a qualidade e a satisfação do cliente.",
     photoUrl: undefined,
   });
   const [activeTab, setActiveTab] = useState<
     "home" | "options" | "activities" | "menu"
   >("home");
+  const [search, setSearch] = useState("");
+  const [modalProfVisible, setModalProfVisible] = useState(false);
+  const professions = jobTagTemplates.map((t) => t.label);
+  const [selectedProfessions, setSelectedProfessions] = useState<string[]>([]);
 
-  const handleMoreInfo = () => {
-    setModalVisible(true);
+  // Map user tags to template colors
+  const userTags = selectedUser.tags.map((label) => {
+    const found = jobTagTemplates.find((t) => t.label === label);
+    return found || { label, color: "#6C63FF" };
+  });
+
+  const handleToggleProfession = (profession: string) => {
+    setSelectedProfessions((prev) =>
+      prev.includes(profession)
+        ? prev.filter((item) => item !== profession)
+        : [...prev, profession]
+    );
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.innerContainer}>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <View style={styles.container}>
         <Header
-          title="Página inicial"
+          title="Pagina inicial"
           photo={selectedUser.photoUrl || require("@/assets/img/avatar1.png")}
         />
-        <Text style={styles.title}>Home Screen</Text>
-        <Text style={styles.description}>Welcome to the Home Screen!</Text>
-        <UserCardMini
-          name={selectedUser.name}
-          tags={selectedUser.tags}
-          onMoreInfo={handleMoreInfo}
-        />
-        <UserModal
-          visible={modalVisible}
-          onClose={() => setModalVisible(false)}
-          name={selectedUser.name}
-          specialty={selectedUser.tags.map((t) => t.label).join(", ")}
-          description={selectedUser.description}
-          rating={selectedUser.rating}
-          photoUrl={selectedUser.photoUrl}
-          onAction={() => {}}
-          actionLabel="Contratar"
-          onProfile={() => {}}
-        />
+        <View style={styles.innerContainer}>
+          <SearchInput value={search} onChangeText={setSearch} />
+          <ProfessionTagsList onAllPress={() => setModalProfVisible(true)} />
+          <ProfessionSelectModal
+            visible={modalProfVisible}
+            professions={professions}
+            selectedProfessions={selectedProfessions}
+            onToggle={handleToggleProfession}
+            onClose={() => setModalProfVisible(false)}
+          />
+          <View style={styles.divider} />
+          <Image
+            source={require("../../assets/img/anuncio.png")}
+            style={styles.adImage}
+          />
+          <Text style={styles.sugestoes}>Sugestões:</Text>
+          <FlatList
+            data={[selectedUser, selectedUser]}
+            keyExtractor={(_, idx) => idx.toString()}
+            renderItem={({ item }) => (
+              <UserCardMini
+                name={item.name}
+                tags={item.tags.map((label: string) => {
+                  const found = jobTagTemplates.find((t) => t.label === label);
+                  return found || { label, color: "#6C63FF" };
+                })}
+                onMoreInfo={() => setModalVisible(true)}
+              />
+            )}
+            ListFooterComponent={
+              <UserModal
+                visible={modalVisible}
+                onClose={() => setModalVisible(false)}
+                name={selectedUser.name}
+                specialty={userTags.map((t) => t.label).join(", ")}
+                description={selectedUser.description}
+                rating={selectedUser.rating}
+                photoUrl={selectedUser.photoUrl}
+                onAction={() => {}}
+                actionLabel="Contratar"
+                onProfile={() => {}}
+              />
+            }
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={{ paddingBottom: 24 }}
+            style={{ flexGrow: 1, minHeight: 200 }}
+          />
+        </View>
+        <BottomTabMenu activeTab={activeTab} onTabPress={setActiveTab} />
       </View>
-      <BottomTabMenu activeTab={activeTab} onTabPress={setActiveTab} />
-    </View>
+    </GestureHandlerRootView>
   );
 }
 
@@ -71,16 +118,22 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     paddingHorizontal: 16,
   },
-  title: {
-    fontSize: 24,
-    fontWeight: "bold",
-    marginBottom: 20,
-    textAlign: "center",
+  divider: {
+    height: 1,
+    backgroundColor: "#191919",
+    marginVertical: 10,
   },
-  description: {
+  adImage: {
+    width: "100%",
+    height: 150,
+    marginBottom: 20,
+    resizeMode: "contain",
+  },
+  sugestoes: {
     fontSize: 16,
-    color: "#333",
-    marginBottom: 24,
-    textAlign: "center",
+    color: "#6C63FF",
+    marginBottom: 8,
+    marginLeft: 4,
+    fontWeight: "bold",
   },
 });
