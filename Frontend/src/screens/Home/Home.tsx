@@ -50,7 +50,7 @@ export default function Home() {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <View style={styles.container}>
         <Header
-          title="Pagina inicial"
+          title="Página inicial"
           photo={selectedUser.photoUrl || require("@/assets/img/avatar1.png")}
         />
         <View style={styles.innerContainer}>
