@@ -4,6 +4,7 @@ import { useNavigation } from "@react-navigation/native";
 import { AuthStackParamList } from "@/navigation/types";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import PrimaryButton from "@/components/common/PrimaryButton";
+import StepIndicator from '@/components/common/StepIndicator';
 
 // Importando os estilos nomeados
 import {
@@ -42,11 +43,7 @@ export default function Onboarding3() {
         />
       </View>
 
-      <View style={indicatorContainer.base}>
-        <View style={indicator.base} />
-        <View style={indicator.base} />
-        <View style={[indicator.base, indicator.active]} />
-      </View>
+      <StepIndicator totalSteps={3} currentStep={2} />
 
       <Text style={title.base}>Avalie sua experiência</Text>
       <Text style={description.base}>

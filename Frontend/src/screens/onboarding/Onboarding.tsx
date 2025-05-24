@@ -5,6 +5,7 @@ import PrimaryButton from "@/components/common/PrimaryButton";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import { AuthStackParamList } from "@/navigation/types";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import StepIndicator from '@/components/common/StepIndicator';
 
 // Importando cada estilo de forma individual
 import {
@@ -14,8 +15,6 @@ import {
   icon,
   imageContainer,
   image,
-  indicatorContainer,
-  indicator,
   title,
   description,
 } from "../../styles/onboarding";
@@ -56,11 +55,7 @@ export default function Onboarding() {
         />
       </View>
 
-      <View style={indicatorContainer.base}>
-        <View style={[indicator.base, indicator.active]} />
-        <View style={indicator.base} />
-        <View style={indicator.base} />
-      </View>
+      <StepIndicator totalSteps={3} currentStep={0} />
 
       <Text style={title.base}>Bem-vindo ao FACILITA!</Text>
       <Text style={description.base}>
