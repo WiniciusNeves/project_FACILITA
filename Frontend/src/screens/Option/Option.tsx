@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { View, StyleSheet, ScrollView } from "react-native";
 import Header from "@/components/common/Header";
 import OptionCard from "../../components/common/OptionCard";
-import BottomTabMenu from "@/components/common/BottomTabMenu";
 
 const options = [
   {
@@ -28,9 +27,6 @@ const options = [
 const userPhoto = require("@/assets/img/avatar1.png");
 
 const OptionScreen = () => {
-  const [activeTab, setActiveTab] = useState<
-    "home" | "options" | "activities" | "menu"
-  >("options");
   return (
     <View style={styles.container}>
       <Header title="Opções" photo={userPhoto} />
@@ -43,7 +39,6 @@ const OptionScreen = () => {
           <OptionCard {...options[2]} />
         </View>
       </ScrollView>
-      <BottomTabMenu activeTab={activeTab} onTabPress={setActiveTab} />
     </View>
   );
 };
