@@ -13,6 +13,7 @@ export type AuthStackParamList = {
 };
 
 export type MainStackParamList = {
-  Home: undefined; // Futuro: tela principal do app
+  Home: undefined; // Tela principal do app
+  Option: undefined; // Tela de opções
   // Adicione outras telas principais aqui
 };

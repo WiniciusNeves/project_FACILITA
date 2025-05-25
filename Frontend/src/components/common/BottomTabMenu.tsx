@@ -2,6 +2,7 @@ import React from "react";
 import { View, TouchableOpacity, Text } from "react-native";
 import FontAwesome6 from "react-native-vector-icons/FontAwesome6";
 import { bottomTabMenuStyles } from "./BottomTabMenu.style";
+import { useNavigation } from "@react-navigation/native";
 
 export interface BottomTabMenuProps {
   activeTab: "home" | "options" | "activities" | "menu";
@@ -21,6 +22,18 @@ const BottomTabMenu: React.FC<BottomTabMenuProps> = ({
   activeTab,
   onTabPress,
 }) => {
+  const navigation = useNavigation();
+
+  const handleTabPress = (tab: TabKey) => {
+    onTabPress(tab);
+    if (tab === "home") {
+      navigation.navigate("Home" as never);
+    } else if (tab === "options") {
+      navigation.navigate("Option" as never);
+    }
+    // Adicione navegação para "activities" e "menu" se necessário
+  };
+
   return (
     <View style={bottomTabMenuStyles.container}>
       {TABS.map((tab) => {
@@ -29,7 +42,7 @@ const BottomTabMenu: React.FC<BottomTabMenuProps> = ({
           <TouchableOpacity
             key={tab.key}
             style={bottomTabMenuStyles.tab}
-            onPress={() => onTabPress(tab.key as TabKey)}
+            onPress={() => handleTabPress(tab.key as TabKey)}
             activeOpacity={0.7}
           >
             <FontAwesome6
