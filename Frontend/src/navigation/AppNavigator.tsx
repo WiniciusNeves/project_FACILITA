@@ -17,6 +17,7 @@ import CompleteRegistration from "../screens/Register/CompleteRegistration";
 
 // Futuro: telas principais do app
 import Home from "../screens/Home/Home";
+import Option from "../screens/Option/Option";
 
 const AuthStack = createNativeStackNavigator<AuthStackParamList>();
 const MainStack = createNativeStackNavigator<MainStackParamList>();
@@ -57,6 +58,7 @@ function MainNavigator() {
   return (
     <MainStack.Navigator screenOptions={{ headerShown: false }}>
       <MainStack.Screen name="Home" component={Home} />
+      <MainStack.Screen name="Option" component={Option} />
     </MainStack.Navigator>
   );
 }
