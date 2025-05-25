@@ -2,47 +2,27 @@ import React from "react";
 import { View, TouchableOpacity, Text } from "react-native";
 import FontAwesome6 from "react-native-vector-icons/FontAwesome6";
 import { bottomTabMenuStyles } from "./BottomTabMenu.style";
-import { useNavigation } from "@react-navigation/native";
-
-export interface BottomTabMenuProps {
-  activeTab: "home" | "options" | "activities" | "menu";
-  onTabPress: (tab: "home" | "options" | "activities" | "menu") => void;
-}
+import type { BottomTabBarProps } from "@react-navigation/bottom-tabs";
 
 const TABS = [
-  { key: "home", icon: "house", label: "início" },
-  { key: "options", icon: "ellipsis", label: "opções" },
-  { key: "activities", icon: "file", label: "atividades" },
-  { key: "menu", icon: "bars", label: "menu" },
+  { key: "HomeTab", icon: "house", label: "início" },
+  { key: "OptionTab", icon: "ellipsis", label: "opções" },
+  { key: "Activities", icon: "file", label: "atividades" },
+  { key: "Menu", icon: "bars", label: "menu" },
 ] as const;
 
 type TabKey = (typeof TABS)[number]["key"];
 
-const BottomTabMenu: React.FC<BottomTabMenuProps> = ({
-  activeTab,
-  onTabPress,
-}) => {
-  const navigation = useNavigation();
-
-  const handleTabPress = (tab: TabKey) => {
-    onTabPress(tab);
-    if (tab === "home") {
-      navigation.navigate("Home" as never);
-    } else if (tab === "options") {
-      navigation.navigate("Option" as never);
-    }
-    // Adicione navegação para "activities" e "menu" se necessário
-  };
-
+const BottomTabMenu: React.FC<BottomTabBarProps> = ({ state, navigation }) => {
   return (
     <View style={bottomTabMenuStyles.container}>
-      {TABS.map((tab) => {
-        const isActive = activeTab === tab.key;
+      {TABS.map((tab, idx) => {
+        const isActive = state.index === idx;
         return (
           <TouchableOpacity
             key={tab.key}
             style={bottomTabMenuStyles.tab}
-            onPress={() => handleTabPress(tab.key as TabKey)}
+            onPress={() => navigation.navigate(tab.key as never)}
             activeOpacity={0.7}
           >
             <FontAwesome6
