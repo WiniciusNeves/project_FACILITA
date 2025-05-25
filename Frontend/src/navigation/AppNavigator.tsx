@@ -20,10 +20,12 @@ import CompleteRegistration from "../screens/Register/CompleteRegistration";
 // Futuro: telas principais do app
 import Home from "../screens/Home/Home";
 import Option from "../screens/Option/Option";
+import AtividadeScreen from "../screens/Atividade/Atividade";
 
 const AuthStack = createNativeStackNavigator<AuthStackParamList>();
 const HomeStack = createNativeStackNavigator();
 const OptionStack = createNativeStackNavigator();
+const AtividadeStack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 function AuthNavigator() {
@@ -76,6 +78,15 @@ function OptionStackNavigator() {
   );
 }
 
+function AtividadeStackNavigator() {
+  return (
+    <AtividadeStack.Navigator screenOptions={{ headerShown: false }}>
+      <AtividadeStack.Screen name="Atividade" component={AtividadeScreen} />
+      {/* Adicione outras telas internas do Atividade aqui */}
+    </AtividadeStack.Navigator>
+  );
+}
+
 function MainTabNavigator() {
   return (
     <Tab.Navigator
@@ -84,6 +95,7 @@ function MainTabNavigator() {
     >
       <Tab.Screen name="HomeTab" component={HomeStackNavigator} />
       <Tab.Screen name="OptionTab" component={OptionStackNavigator} />
+      <Tab.Screen name="AtividadeTab" component={AtividadeStackNavigator} />
       {/* Adicione outras abas aqui, se necessário */}
     </Tab.Navigator>
   );
