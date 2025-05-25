@@ -3,7 +3,6 @@ import { View, Text, StyleSheet, Image } from "react-native";
 import Header from "@/components/common/Header";
 import UserCardMini from "@/components/common/UserCardMini";
 import UserModal from "@/components/common/UserModal";
-import BottomTabMenu from "@/components/common/BottomTabMenu";
 import SearchInput from "@/components/common/SearchInput";
 import ProfessionTagsList from "@/components/common/ProfessionTagsList";
 import ProfessionSelectModal from "@/components/common/ProfessionSelectModal";
@@ -24,9 +23,6 @@ export default function Home() {
       "Sou Ronando Jubileu, profissional com experiência em diversas áreas. Sempre priorizo a qualidade e a satisfação do cliente.",
     photoUrl: undefined,
   });
-  const [activeTab, setActiveTab] = useState<
-    "home" | "options" | "activities" | "menu"
-  >("home");
   const [search, setSearch] = useState("");
   const [modalProfVisible, setModalProfVisible] = useState(false);
   const professions = jobTagTemplates.map((t) => t.label);
@@ -101,7 +97,7 @@ export default function Home() {
             style={{ flexGrow: 1, minHeight: 200 }}
           />
         </View>
-        <BottomTabMenu activeTab={activeTab} onTabPress={setActiveTab} />
+        {/* Removido BottomTabMenu local, agora é global pelo AppNavigator */}
       </View>
     </GestureHandlerRootView>
   );

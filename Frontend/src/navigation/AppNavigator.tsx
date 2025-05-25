@@ -2,7 +2,9 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { AuthStackParamList, MainStackParamList } from "./types";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { AuthStackParamList } from "./types";
+import BottomTabMenu from "../components/common/BottomTabMenu";
 
 // Importação das telas de autenticação
 import Onboarding from "../screens/onboarding/Onboarding";
@@ -18,9 +20,13 @@ import CompleteRegistration from "../screens/Register/CompleteRegistration";
 // Futuro: telas principais do app
 import Home from "../screens/Home/Home";
 import Option from "../screens/Option/Option";
+import AtividadeScreen from "../screens/Atividade/Atividade";
 
 const AuthStack = createNativeStackNavigator<AuthStackParamList>();
-const MainStack = createNativeStackNavigator<MainStackParamList>();
+const HomeStack = createNativeStackNavigator();
+const OptionStack = createNativeStackNavigator();
+const AtividadeStack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
 function AuthNavigator() {
   return (
@@ -54,22 +60,52 @@ function AuthNavigator() {
   );
 }
 
-function MainNavigator() {
+function HomeStackNavigator() {
   return (
-    <MainStack.Navigator screenOptions={{ headerShown: false }}>
-      <MainStack.Screen name="Home" component={Home} />
-      <MainStack.Screen name="Option" component={Option} />
-    </MainStack.Navigator>
+    <HomeStack.Navigator screenOptions={{ headerShown: false }}>
+      <HomeStack.Screen name="Home" component={Home} />
+      {/* Adicione outras telas internas do Home aqui */}
+    </HomeStack.Navigator>
+  );
+}
+
+function OptionStackNavigator() {
+  return (
+    <OptionStack.Navigator screenOptions={{ headerShown: false }}>
+      <OptionStack.Screen name="Option" component={Option} />
+      {/* Adicione outras telas internas do Option aqui */}
+    </OptionStack.Navigator>
+  );
+}
+
+function AtividadeStackNavigator() {
+  return (
+    <AtividadeStack.Navigator screenOptions={{ headerShown: false }}>
+      <AtividadeStack.Screen name="Atividade" component={AtividadeScreen} />
+      {/* Adicione outras telas internas do Atividade aqui */}
+    </AtividadeStack.Navigator>
+  );
+}
+
+function MainTabNavigator() {
+  return (
+    <Tab.Navigator
+      screenOptions={{ headerShown: false }}
+      tabBar={(props) => <BottomTabMenu {...props} />}
+    >
+      <Tab.Screen name="HomeTab" component={HomeStackNavigator} />
+      <Tab.Screen name="OptionTab" component={OptionStackNavigator} />
+      <Tab.Screen name="AtividadeTab" component={AtividadeStackNavigator} />
+      {/* Adicione outras abas aqui, se necessário */}
+    </Tab.Navigator>
   );
 }
 
 const AppNavigator = () => {
-  // Aqui você pode adicionar lógica de autenticação futuramente
-  // Exemplo: const isLoggedIn = useAuth();
   const isLoggedIn = true; // Troque para lógica real futuramente
   return (
     <NavigationContainer>
-      {isLoggedIn ? <MainNavigator /> : <AuthNavigator />}
+      {isLoggedIn ? <MainTabNavigator /> : <AuthNavigator />}
     </NavigationContainer>
   );
 };
