@@ -7,7 +7,7 @@ import type { BottomTabBarProps } from "@react-navigation/bottom-tabs";
 const TABS = [
   { key: "HomeTab", icon: "house", label: "início" },
   { key: "OptionTab", icon: "ellipsis", label: "opções" },
-  { key: "Activities", icon: "file", label: "atividades" },
+  { key: "AtividadeTab", icon: "file", label: "atividades" },
   { key: "Menu", icon: "bars", label: "menu" },
 ] as const;
 
