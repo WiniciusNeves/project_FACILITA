@@ -5,7 +5,7 @@ export type AuthStackParamList = {
   Onboarding2: undefined;
   Onboarding3: undefined;
   Policy: undefined;
-  AuthScreen: undefined;
+  AuthScreen?: { showSuccessModal?: boolean };
   RestorePassword: undefined;
   Register: undefined;
   EmailVerification: undefined;

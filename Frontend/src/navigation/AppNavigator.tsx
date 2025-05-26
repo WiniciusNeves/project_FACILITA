@@ -102,7 +102,7 @@ function MainTabNavigator() {
 }
 
 const AppNavigator = () => {
-  const isLoggedIn = true; // Troque para lógica real futuramente
+  const isLoggedIn = false; // Troque para lógica real futuramente
   return (
     <NavigationContainer>
       {isLoggedIn ? <MainTabNavigator /> : <AuthNavigator />}
