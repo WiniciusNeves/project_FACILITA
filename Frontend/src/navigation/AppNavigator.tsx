@@ -16,6 +16,7 @@ import RestorePassword from "../screens/RestorePassword";
 import Register from "../screens/Register/Register";
 import EmailVerification from "../screens/Register/EmailVerification";
 import CompleteRegistration from "../screens/Register/CompleteRegistration";
+import SplashScreen from "../screens/SplashScreen";
 
 // Futuro: telas principais do app
 import Home from "../screens/Home/Home";
@@ -27,6 +28,7 @@ const HomeStack = createNativeStackNavigator();
 const OptionStack = createNativeStackNavigator();
 const AtividadeStack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
+const RootStack = createNativeStackNavigator();
 
 function AuthNavigator() {
   return (
@@ -102,10 +104,15 @@ function MainTabNavigator() {
 }
 
 const AppNavigator = () => {
-  const isLoggedIn = true; // Troque para lógica real futuramente
+  // Troque para lógica real futuramente
+  // O SplashScreen decide para onde navegar
   return (
     <NavigationContainer>
-      {isLoggedIn ? <MainTabNavigator /> : <AuthNavigator />}
+      <RootStack.Navigator screenOptions={{ headerShown: false }}>
+        <RootStack.Screen name="Splash" component={SplashScreen} />
+        <RootStack.Screen name="AuthScreen" component={AuthNavigator} />
+        <RootStack.Screen name="Main" component={MainTabNavigator} />
+      </RootStack.Navigator>
     </NavigationContainer>
   );
 };
