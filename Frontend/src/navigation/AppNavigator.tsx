@@ -104,8 +104,7 @@ function MainTabNavigator() {
 }
 
 const AppNavigator = () => {
-  // Troque para lógica real futuramente
-  // O SplashScreen decide para onde navegar
+  const isLoggedIn = false; // Troque para lógica real futuramente
   return (
     <NavigationContainer>
       <RootStack.Navigator screenOptions={{ headerShown: false }}>
