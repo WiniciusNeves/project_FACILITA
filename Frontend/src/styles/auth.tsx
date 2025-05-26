@@ -194,13 +194,15 @@ export const modalStyles = StyleSheet.create({
     },
     container: {
         width: "90%",
-        height: "50%",
         backgroundColor: "#FFF",
         borderTopLeftRadius: 16,
         borderTopRightRadius: 16,
         padding: 24,
         alignItems: "center",
     },
+    inner: {
+    flex: 1
+  },
     closeButton: {
         alignSelf: "flex-end",
     },

@@ -48,7 +48,7 @@ export default function RestorePassword() {
   const handleSubmit = () => {
     if (password === confirmPassword) {
       console.log("Senha redefinida com sucesso!");
-      navigation.navigate("AuthScreen", { showSuccessModal: true }); // Redireciona para Auth com o modal visível
+      navigation.navigate("AuthScreen", {showSuccessModal: true}); // Redireciona para Auth com o modal visível
     } else {
       console.log("As senhas não coincidem.");
     }
