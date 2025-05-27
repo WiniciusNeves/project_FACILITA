@@ -68,18 +68,18 @@ export const googleButton = StyleSheet.create({
     justifyContent: "center",
   },
   iconImage: {
-      width: 28,
-      height: 28,
+    width: 28,
+    height: 28,
   },
   verticalLine: {
-      width: 1,
-      height: 20,
-      backgroundColor: "#fff",
-      marginHorizontal: 12,
+    width: 1,
+    height: 20,
+    backgroundColor: "#fff",
+    marginHorizontal: 12,
   },
   text: {
     color: "#FFF",
-      fontSize: 14,
+    fontSize: 14,
   },
 });
 
@@ -111,7 +111,7 @@ export const inputContainer = StyleSheet.create({
     color: "#000",
     fontSize: 16,
     marginLeft: 8,
-  }
+  },
 });
 
 export const forgotPassword = StyleSheet.create({
@@ -167,98 +167,98 @@ export const avatarImage = StyleSheet.create({
 // Sing Up Complete Styles
 export const profileImageContainer = StyleSheet.create({
   base: {
-      alignItems: "center",
-      marginBottom: 16,
-      marginTop: 12,
+    alignItems: "center",
+    marginBottom: 16,
+    marginTop: 12,
   },
 });
 
 export const profileImage = StyleSheet.create({
   base: {
-      width: 100,
-      height: 100,
-      borderRadius: 50,
-      backgroundColor: "#eee",
-      justifyContent: "center",
-      alignItems: "center",
+    width: 150,
+    height: 150,
+    borderRadius: 75,
+    backgroundColor: "#eee",
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 
 // Modal styles
 export const modalStyles = StyleSheet.create({
-    overlay: {
-        flex: 1,
-        backgroundColor: "rgba(0, 0, 0, 0.5)",
-        justifyContent: "flex-end",
-        alignItems: "center",
-    },
-    container: {
-        width: "90%",
-        backgroundColor: "#FFF",
-        borderTopLeftRadius: 16,
-        borderTopRightRadius: 16,
-        padding: 24,
-        alignItems: "center",
-    },
-    inner: {
-    flex: 1
+  overlay: {
+    flex: 1,
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    justifyContent: "flex-end",
+    alignItems: "center",
   },
-    closeButton: {
-        alignSelf: "flex-end",
-    },
-    closeText: {
-        fontSize: 18,
-        fontWeight: "bold",
-    },
-    title: {
-        fontSize: 18,
-        fontWeight: "bold",
-        marginBottom: 12,
-        textAlign: "center",
-    },
-    description: {
-        fontSize: 14,
-        textAlign: "center",
-        marginBottom: 16,
-        color: "#333",
-        lineHeight: 20,
-    },
+  container: {
+    width: "90%",
+    backgroundColor: "#FFF",
+    borderTopLeftRadius: 16,
+    borderTopRightRadius: 16,
+    padding: 24,
+    alignItems: "center",
+  },
+  inner: {
+    flex: 1,
+  },
+  closeButton: {
+    alignSelf: "flex-end",
+  },
+  closeText: {
+    fontSize: 18,
+    fontWeight: "bold",
+  },
+  title: {
+    fontSize: 18,
+    fontWeight: "bold",
+    marginBottom: 12,
+    textAlign: "center",
+  },
+  description: {
+    fontSize: 14,
+    textAlign: "center",
+    marginBottom: 16,
+    color: "#333",
+    lineHeight: 20,
+  },
 });
 
 export const bulletList = StyleSheet.create({
   base: {
-      marginVertical: 12,
-      marginTop: 0,
+    marginVertical: 12,
+    marginTop: 0,
   },
   bulletItem: {
-      fontSize: 14,
-      color: "#999",
-      marginBottom: 4,
+    fontSize: 14,
+    color: "#999",
+    marginBottom: 4,
   },
   valid: {
-      color: "#6C63FF", // Cor para itens válidos
+    color: "#6C63FF", // Cor para itens válidos
   },
 });
 
 export const verifyEmailInputs = StyleSheet.create({
   base: {
-      flexDirection: "row",
-      justifyContent: "space-between",
-      marginVertical: 16,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginVertical: 16,
   },
   input: {
-      width: 80,
-      height: 80,
-      borderWidth: 1,
-      borderColor: "#6C63FF",
-      textAlign: "center",
-      fontSize: 24,
-      color: "#000",
-      backgroundColor: "#FFF",
-      borderRadius: 8,
-      marginBottom: 20,
-      boxShadow: "0 4px 4px rgba(108, 99, 255, 1)",
-      alignSelf: "center",
-      alignItems: "center",
+    width: 80,
+    height: 80,
+    borderWidth: 1,
+    borderColor: "#6C63FF",
+    textAlign: "center",
+    fontSize: 24,
+    color: "#000",
+    backgroundColor: "#FFF",
+    borderRadius: 8,
+    marginBottom: 20,
+    boxShadow: "0 4px 4px rgba(108, 99, 255, 1)",
+    alignSelf: "center",
+    alignItems: "center",
   },
 });
