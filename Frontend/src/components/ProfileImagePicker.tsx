@@ -1,43 +1,51 @@
 import React, { useState } from "react";
 import { View, Image, TouchableOpacity, Alert } from "react-native";
 import { launchCamera, launchImageLibrary } from "react-native-image-picker";
-import Icon from "react-native-vector-icons/Feather";
+import Icon from "react-native-vector-icons/FontAwesome6";
 import { profileImageContainer, profileImage } from "../styles/auth";
 
-export default function ProfileImagePicker() {
-    const [imageUri, setImageUri] = useState(null);
+interface ProfileImagePickerProps {
+  onImageChange?: (uri: string | null) => void;
+}
 
-    const openOptions = () => {
-        Alert.alert("Foto de Perfil", "Escolha uma opção", [
-            { text: "Câmera", onPress: handleOpenCamera },
-            { text: "Galeria", onPress: handleOpenGallery },
-            { text: "Cancelar", style: "cancel" },
-        ]);
-    };
+export default function ProfileImagePicker({
+  onImageChange,
+}: ProfileImagePickerProps) {
+  const [imageUri, setImageUri] = useState<string | null>(null);
 
-    const handleOpenCamera = async () => {
-        const result = await launchCamera({ mediaType: "photo" });
-        if (result?.assets?.length) {
-            setImageUri(result.assets[0].uri);
-        }
-    };
+  const openOptions = () => {
+    Alert.alert("Foto de Perfil", "Escolha uma opção", [
+      { text: "Câmera", onPress: handleOpenCamera },
+      { text: "Galeria", onPress: handleOpenGallery },
+      { text: "Cancelar", style: "cancel" },
+    ]);
+  };
 
-    const handleOpenGallery = async () => {
-        const result = await launchImageLibrary({ mediaType: "photo" });
-        if (result?.assets?.length) {
-            setImageUri(result.assets[0].uri);
-        }
-    };
+  const handleOpenCamera = async () => {
+    const result = await launchCamera({ mediaType: "photo" });
+    if (result?.assets?.length) {
+      setImageUri(result.assets[0].uri!);
+      onImageChange?.(result.assets[0].uri!);
+    }
+  };
 
-    return (
-        <TouchableOpacity onPress={openOptions} style={profileImageContainer.base}>
-            {imageUri ? (
-                <Image source={{ uri: imageUri }} style={profileImage.base} />
-            ) : (
-                <View style={profileImage.base}>
-                    <Icon name="user" size={48} color="#999" />
-                </View>
-            )}
-        </TouchableOpacity>
-    );
+  const handleOpenGallery = async () => {
+    const result = await launchImageLibrary({ mediaType: "photo" });
+    if (result?.assets?.length) {
+      setImageUri(result.assets[0].uri!);
+      onImageChange?.(result.assets[0].uri!);
+    }
+  };
+
+  return (
+    <TouchableOpacity onPress={openOptions} style={profileImageContainer.base}>
+      {imageUri ? (
+        <Image source={{ uri: imageUri }} style={profileImage.base} />
+      ) : (
+        <View style={profileImage.base}>
+          <Icon name="circle-user" size={140} color="#999" />
+        </View>
+      )}
+    </TouchableOpacity>
+  );
 }
