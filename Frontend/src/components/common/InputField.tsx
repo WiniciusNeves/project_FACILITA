@@ -22,6 +22,8 @@ export type InputFieldProps = {
   inputStyle?: StyleProp<ViewStyle>;
   autoCapitalize?: TextInputProps["autoCapitalize"];
   editable?: boolean;
+  maxLength?: number;
+  textAlignVertical?: TextInputProps["textAlignVertical"];
 };
 
 const InputField: React.FC<InputFieldProps> = ({
@@ -36,6 +38,8 @@ const InputField: React.FC<InputFieldProps> = ({
   inputStyle,
   autoCapitalize = "none",
   editable = true,
+  maxLength,
+  textAlignVertical,
 }) => {
   return (
     <View style={[inputField.container, style]}>
@@ -54,6 +58,8 @@ const InputField: React.FC<InputFieldProps> = ({
           autoCapitalize={autoCapitalize}
           editable={editable}
           placeholderTextColor="#B0AEE0"
+          maxLength={maxLength}
+          textAlignVertical={textAlignVertical}
         />
       </View>
     </View>
