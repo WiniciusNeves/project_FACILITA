@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import Header from "@/components/common/Header";
 import UserCardMini from "@/components/common/UserCardMini";
 import UserModal from "@/components/common/UserModal";
@@ -12,6 +12,8 @@ import {
   Gesture,
   GestureHandlerRootView,
 } from "react-native-gesture-handler";
+import { storage } from "@/storage";
+import { useNavigation } from "@react-navigation/native";
 
 export default function Home() {
   const [modalVisible, setModalVisible] = useState(false);
@@ -27,6 +29,7 @@ export default function Home() {
   const [modalProfVisible, setModalProfVisible] = useState(false);
   const professions = jobTagTemplates.map((t) => t.label);
   const [selectedProfessions, setSelectedProfessions] = useState<string[]>([]);
+  const navigation = useNavigation();
 
   // Map user tags to template colors
   const userTags = selectedUser.tags.map((label) => {
@@ -40,6 +43,17 @@ export default function Home() {
         ? prev.filter((item) => item !== profession)
         : [...prev, profession]
     );
+  };
+
+  const handleLogout = () => {
+    storage.delete("user");
+    // Redireciona para AuthScreen (login)
+    const parentNav = navigation.getParent && navigation.getParent();
+    if (parentNav && parentNav.reset) {
+      parentNav.reset({ index: 4, routes: [{ name: "AuthScreen" }] });
+    } else if ((navigation as any).reset) {
+      (navigation as any).reset({ index: 4, routes: [{ name: "AuthScreen" }] });
+    }
   };
 
   return (
@@ -96,6 +110,21 @@ export default function Home() {
             contentContainerStyle={{ paddingBottom: 24 }}
             style={{ flexGrow: 1, minHeight: 200 }}
           />
+          <TouchableOpacity
+            style={{
+              backgroundColor: "#C0392B",
+              padding: 12,
+              borderRadius: 8,
+              alignSelf: "center",
+              marginTop: 24,
+              marginBottom: 12,
+            }}
+            onPress={handleLogout}
+          >
+            <Text style={{ color: "#FFF", fontWeight: "bold", fontSize: 16 }}>
+              Sair da conta
+            </Text>
+          </TouchableOpacity>
         </View>
         {/* Removido BottomTabMenu local, agora é global pelo AppNavigator */}
       </View>

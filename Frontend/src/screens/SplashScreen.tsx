@@ -1,5 +1,12 @@
 import React, { useEffect } from "react";
-import { View, Text, StyleSheet, Image, ActivityIndicator } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  ActivityIndicator,
+  StatusBar,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { storage } from "../storage";
 
@@ -15,7 +22,7 @@ const SplashScreen: React.FC = () => {
         // Ajuste para sua navegação real
         navigation.reset({
           index: 0,
-          routes: [{ name: user.role === "provider" ? "HomeTab" : "HomeTab" }],
+          routes: [{ name: "Main" }],
         });
       } else {
         navigation.reset({ index: 0, routes: [{ name: "AuthScreen" }] });
@@ -25,10 +32,13 @@ const SplashScreen: React.FC = () => {
   }, [navigation]);
 
   return (
-    <View style={styles.container}>
-      <Image source={require("../../assets/logo.png")} style={styles.logo} />
-      <ActivityIndicator size="large" color="#333" style={styles.spinner} />
-    </View>
+    <>
+      <StatusBar barStyle="light-content" backgroundColor="#6C63FF" />
+      <View style={styles.container}>
+        <Image source={require("../../assets/logo.png")} style={styles.logo} />
+        <ActivityIndicator size="large" color="#333" style={styles.spinner} />
+      </View>
+    </>
   );
 };
 
