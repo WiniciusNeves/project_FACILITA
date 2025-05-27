@@ -1,5 +1,6 @@
 // src/navigation/AppNavigator.tsx
 import React from "react";
+import { StatusBar } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -104,9 +105,9 @@ function MainTabNavigator() {
 }
 
 const AppNavigator = () => {
-  const isLoggedIn = false; // Troque para lógica real futuramente
   return (
     <NavigationContainer>
+      <StatusBar barStyle="light-content" backgroundColor="#6C63FF" />
       <RootStack.Navigator screenOptions={{ headerShown: false }}>
         <RootStack.Screen name="Splash" component={SplashScreen} />
         <RootStack.Screen name="AuthScreen" component={AuthNavigator} />
