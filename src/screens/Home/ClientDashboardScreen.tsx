@@ -20,7 +20,7 @@ export default function ClientDashboardScreen() {
   const [searchQuery, setSearchQuery] = useState('');
   const [modalProfVisible, setModalProfVisible] = useState(false);
   const [selectedProfessions, setSelectedProfessions] = useState<string[]>([]);
-  const [providers, setProviders] = useState<any[]>([]);
+  const [providers, setProviders] = useState<Provider[]>([]);
   const [modalUser, setModalUser] = useState<any | null>(null);
   const [modalVisible, setModalVisible] = useState(false);
 
