@@ -217,9 +217,7 @@ export default function Register() {
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View>
           <ProfileImagePicker
-            onImageChange={uri => {
-              setProfileImage(uri);
-            }}
+            onImageChange={setProfileImage}
           />
           <InputField
             placeholder="Nome Completo"
