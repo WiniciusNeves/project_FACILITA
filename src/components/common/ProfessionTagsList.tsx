@@ -27,7 +27,7 @@ const ProfessionTagsList: React.FC<ProfessionTagsListProps> = ({
           onPress={() => onTagPress && onTagPress(tag.label)}
           style={
             selectedTags.includes(tag.label)
-              ? {borderWidth: 2, borderColor: '#191970'}
+              ? {borderWidth: 2, borderColor: '#6C63FF'}
               : undefined
           }
         />
