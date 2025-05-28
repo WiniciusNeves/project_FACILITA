@@ -54,8 +54,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: '#222',
     backgroundColor: 'transparent',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   icon: {
     marginLeft: 8,
