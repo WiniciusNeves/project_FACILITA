@@ -181,7 +181,8 @@ export default function Register() {
       phone,
       whatsapp,
       role,
-      profile_picture: profileImage || 'https://via.placeholder.com/150',
+      profile_picture:
+        profileImage && profileImage.length > 0 ? profileImage : undefined, // Salva como undefined se não houver imagem
     };
     try {
       await new Promise(resolve => setTimeout(resolve, 1000));
@@ -215,7 +216,11 @@ export default function Register() {
       keyboardShouldPersistTaps="handled">
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View>
-          <ProfileImagePicker onImageChange={setProfileImage} />
+          <ProfileImagePicker
+            onImageChange={uri => {
+              setProfileImage(uri);
+            }}
+          />
           <InputField
             placeholder="Nome Completo"
             value={name}
