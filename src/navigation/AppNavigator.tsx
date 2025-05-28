@@ -20,7 +20,7 @@ import CompleteRegistration from '../screens/Register/CompleteRegistration';
 import SplashScreen from '../screens/SplashScreen';
 
 // Futuro: telas principais do app
-import Home from '../screens/Home/Home';
+import ClientDashboardScreen from '../screens/Home/ClientDashboardScreen';
 import Option from '../screens/Option/Option';
 import AtividadeScreen from '../screens/Atividade/Atividade';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -67,7 +67,10 @@ function AuthNavigator() {
 function HomeStackNavigator() {
   return (
     <HomeStack.Navigator screenOptions={{headerShown: false}}>
-      <HomeStack.Screen name="Home" component={Home} />
+      <HomeStack.Screen
+        name="ClientDashboardScreen"
+        component={ClientDashboardScreen}
+      />
       {/* Adicione outras telas internas do Home aqui */}
     </HomeStack.Navigator>
   );

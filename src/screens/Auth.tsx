@@ -65,7 +65,8 @@ const AuthScreen = () => {
 
   const handleLogin = async () => {
     setLoading(true);
-    // Simulação de autenticação com dados mockados
+    Keyboard.dismiss();
+    // Simulação de autenticação
     if (email === 'cliente@teste.com' && password === '123456') {
       const user: User = {
         id: 1,
@@ -78,7 +79,7 @@ const AuthScreen = () => {
       };
       storage.set('user', JSON.stringify(user));
       Alert.alert('Sucesso', 'Login de cliente realizado!');
-      // Redireciona para a stack principal (Main) usando o parent navigator
+      // Redireciona para dashboard do cliente
       const parentNav = navigation.getParent && navigation.getParent();
       if (parentNav && parentNav.reset) {
         parentNav.reset({index: 0, routes: [{name: 'Main'}]});
@@ -97,15 +98,22 @@ const AuthScreen = () => {
       };
       storage.set('user', JSON.stringify(user));
       Alert.alert('Sucesso', 'Login de autônomo realizado!');
-      // Redireciona para a stack principal (Main) usando o parent navigator
+      // Redireciona para dashboard do provider
       const parentNav = navigation.getParent && navigation.getParent();
       if (parentNav && parentNav.reset) {
-        parentNav.reset({index: 0, routes: [{name: 'Main'}]});
+        parentNav.reset({
+          index: 0,
+          routes: [{name: 'ProviderDashboardScreen'}],
+        });
       } else if ((navigation as any).reset) {
-        (navigation as any).reset({index: 0, routes: [{name: 'Main'}]});
+        (navigation as any).reset({
+          index: 0,
+          routes: [{name: 'ProviderDashboardScreen'}],
+        });
       }
     } else {
-      Alert.alert('Erro', 'E-mail ou senha incorretos.');
+      setLoading(false);
+      Alert.alert('Erro', 'Email ou senha incorretos.');
     }
     setLoading(false);
   };
