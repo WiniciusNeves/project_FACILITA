@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {View, Image, TouchableOpacity, Alert} from 'react-native';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import Icon from 'react-native-vector-icons/FontAwesome6';
-import {profileImageContainer, profileImage} from '../shared/styles/auth';
+import {profileImageContainer, profileImage} from '../../../shared/styles/auth';
 
 interface ProfileImagePickerProps {
   onImageChange?: (uri: string | null) => void;

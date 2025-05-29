@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, StyleProp, ViewStyle} from 'react-native';
-import {indicatorContainer, indicator} from '../../shared/styles/onboarding';
+import {indicatorContainer, indicator} from '../../../shared/styles/onboarding';
 
 export interface StepIndicatorProps {
   totalSteps: number;

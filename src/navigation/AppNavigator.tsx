@@ -14,7 +14,7 @@ import Onboarding3 from '../features/onboarding/Onboarding3';
 import Policy from '../features/Policy/PolicyScreen';
 import AuthScreen from '../features/Login/LoginScreen';
 import RestorePassword from '../features/Login/RestorePassword';
-import Register from '../features/Signup/SignupScreen';
+import Register from '../features/SignUp/SignupScreen';
 import EmailVerification from '../features/SignUp/EmailVerification';
 import CompleteRegistration from '../features/SignUp/CompleteRegistration';
 import SplashScreen from '../features/Splash/SplashScreen';

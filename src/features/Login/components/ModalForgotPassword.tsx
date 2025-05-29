@@ -9,11 +9,11 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
 } from 'react-native';
-import InputField from '../shared/components/InputField';
-import AuthButton from '../shared/components/PrimaryButton';
-import {modalStyles} from '../shared/styles/auth';
+import InputField from '../../../shared/components/InputField';
+import AuthButton from '../../../shared/components/PrimaryButton';
+import {modalStyles} from '../../../shared/styles/auth';
 import {useNavigation} from '@react-navigation/native';
-import {AuthStackParamList} from '../navigation/types';
+import {AuthStackParamList} from '../../../navigation/types';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 type LoginScreenNavigationProp = NativeStackNavigationProp<

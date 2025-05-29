@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Image, Text, TouchableOpacity} from 'react-native';
-import {googleButton} from '../shared/styles/auth';
+import {googleButton} from '../../../shared/styles/auth';
 
 export default function GoogleButton() {
   return (
@@ -11,7 +11,7 @@ export default function GoogleButton() {
       onPressIn={() => {}}>
       <View style={googleButton.content}>
         <Image
-          source={require('../assets/img/googleIcon.png')}
+          source={require('../../../assets/img/googleIcon.png')}
           style={googleButton.iconImage}
         />
         <View style={googleButton.verticalLine} />

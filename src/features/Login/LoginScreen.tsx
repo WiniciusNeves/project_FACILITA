@@ -75,7 +75,7 @@ const AuthScreen = () => {
         phone: '11999998888',
         whatsapp: '11999998888',
         role: Role.COMMON,
-        profile_picture: 'https://example.com/client_pic.jpg',
+        profile_picture: '../../assets/img/avatar1.png',
       };
       storage.set('user', JSON.stringify(user));
       Alert.alert('Sucesso', 'Login de cliente realizado!');
@@ -94,7 +94,7 @@ const AuthScreen = () => {
         phone: '11988887777',
         whatsapp: '11988887777',
         role: Role.PROVIDER,
-        profile_picture: 'https://example.com/provider_pic.jpg',
+        profile_picture: '../../assets/img/avatar1.png',
       };
       storage.set('user', JSON.stringify(user));
       Alert.alert('Sucesso', 'Login de autônomo realizado!');
@@ -103,12 +103,12 @@ const AuthScreen = () => {
       if (parentNav && parentNav.reset) {
         parentNav.reset({
           index: 0,
-          routes: [{name: 'ProviderDashboardScreen'}],
+          routes: [{name: 'Main'}],
         });
       } else if ((navigation as any).reset) {
         (navigation as any).reset({
           index: 0,
-          routes: [{name: 'ProviderDashboardScreen'}],
+          routes: [{name: 'Main'}],
         });
       }
     } else {
@@ -134,7 +134,7 @@ const AuthScreen = () => {
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={[container.base, {paddingTop: 60}]}>
           <Image
-            source={require('../assets/img/authLogo.png')}
+            source={require('../../assets/img/authLogo.png')}
             style={logo.base}
           />
           <Text style={title.base}>Bem vindo de volta</Text>

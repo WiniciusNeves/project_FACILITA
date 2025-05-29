@@ -8,7 +8,7 @@ import {
   ViewStyle,
   StyleSheet,
 } from 'react-native';
-import Tag from '../../../shared/components/Tag';
+import Tag from './Tag';
 
 export interface UserCardMiniProps {
   photoUrl?: string;

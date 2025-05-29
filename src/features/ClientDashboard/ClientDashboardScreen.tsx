@@ -11,7 +11,7 @@ import {Role, User} from '../../shared/types/User';
 import PrimaryButton from '../../shared/components/PrimaryButton';
 import ProfessionSelectModal from './components/ProfessionSelectModal';
 import {jobTagTemplates} from '../../shared/utils/jobTagTemplates';
-import UserCardMini from './components/UserCardMini';
+import UserCardMini from '../../shared/components/UserCardMini';
 import UserModal from './components/UserModal';
 
 export default function ClientDashboardScreen() {

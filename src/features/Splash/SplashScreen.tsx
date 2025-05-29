@@ -34,7 +34,10 @@ const SplashScreen: React.FC = () => {
     <>
       <StatusBar barStyle="light-content" backgroundColor="#6C63FF" />
       <View style={styles.container}>
-        <Image source={require('../../assets/logo.png')} style={styles.logo} />
+        <Image
+          source={require('../../assets/img/logo.png')}
+          style={styles.logo}
+        />
         <ActivityIndicator size="large" color="#333" style={styles.spinner} />
       </View>
     </>

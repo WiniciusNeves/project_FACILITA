@@ -68,7 +68,7 @@ const UserCard: React.FC<UserCardProps> = ({
               source={
                 photoUrl
                   ? {uri: photoUrl}
-                  : require('../../assets/img/avatar1.png')
+                  : require('../../../assets/img/avatar1.png')
               }
               style={userCardStyles.avatarLarge}
             />
