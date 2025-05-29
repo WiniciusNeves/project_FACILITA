@@ -24,12 +24,15 @@ import ClientDashboardScreen from '../features/ClientDashboard/ClientDashboardSc
 import ProviderDashboardScreen from '../features/ProviderDashboard/ProviderDashboardScreen';
 import Option from '../features/Option/OptionScreen';
 import AtividadeScreen from '../features/Atividade/AtividadeScreen';
+import MenuScreen from '../features/Menu/MenuScreen';
+import EditProfileScreen from '../features/EditProfile/EditProfileScreen';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
 const AuthStack = createNativeStackNavigator<AuthStackParamList>();
 const HomeStack = createNativeStackNavigator();
 const OptionStack = createNativeStackNavigator();
 const AtividadeStack = createNativeStackNavigator();
+const MenuStack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 const RootStack = createNativeStackNavigator();
 
@@ -99,6 +102,18 @@ function AtividadeStackNavigator() {
   );
 }
 
+function MenuStackNavigator() {
+  return (
+    <MenuStack.Navigator screenOptions={{headerShown: false}}>
+      <MenuStack.Screen name="Menu" component={MenuScreen} />
+      <MenuStack.Screen
+        name="EditProfileScreen"
+        component={EditProfileScreen}
+      />
+    </MenuStack.Navigator>
+  );
+}
+
 function MainTabNavigator() {
   return (
     <Tab.Navigator
@@ -107,7 +122,7 @@ function MainTabNavigator() {
       <Tab.Screen name="HomeTab" component={HomeStackNavigator} />
       <Tab.Screen name="OptionTab" component={OptionStackNavigator} />
       <Tab.Screen name="AtividadeTab" component={AtividadeStackNavigator} />
-      {/* Adicione outras abas aqui, se necessário */}
+      <Tab.Screen name="MenuTab" component={MenuStackNavigator} />
     </Tab.Navigator>
   );
 }
