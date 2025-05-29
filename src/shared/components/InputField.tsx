@@ -1,0 +1,104 @@
+import React from 'react';
+import {
+  View,
+  Text,
+  TextInput,
+  StyleProp,
+  ViewStyle,
+  TextInputProps,
+  StyleSheet,
+} from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome6';
+
+export type InputFieldProps = {
+  label?: string;
+  placeholder?: string;
+  icon?: string;
+  value: string;
+  onChangeText: (text: string) => void;
+  secureTextEntry?: boolean;
+  keyboardType?: TextInputProps['keyboardType'];
+  style?: StyleProp<ViewStyle>;
+  inputStyle?: StyleProp<ViewStyle>;
+  autoCapitalize?: TextInputProps['autoCapitalize'];
+  editable?: boolean;
+  maxLength?: number;
+  textAlignVertical?: TextInputProps['textAlignVertical'];
+};
+
+const InputField: React.FC<InputFieldProps> = ({
+  label,
+  placeholder,
+  icon,
+  value,
+  onChangeText,
+  secureTextEntry = false,
+  keyboardType = 'default',
+  style,
+  inputStyle,
+  autoCapitalize = 'none',
+  editable = true,
+  maxLength,
+  textAlignVertical,
+}) => {
+  return (
+    <View style={[inputField.container, style]}>
+      {label && <Text style={inputField.label}>{label}</Text>}
+      <View style={inputField.inputWrapper}>
+        {icon && (
+          <Icon name={icon} size={20} color="#6C63FF" style={inputField.icon} />
+        )}
+        <TextInput
+          style={[inputField.input, inputStyle]}
+          placeholder={placeholder}
+          value={value}
+          onChangeText={onChangeText}
+          secureTextEntry={secureTextEntry}
+          keyboardType={keyboardType}
+          autoCapitalize={autoCapitalize}
+          editable={editable}
+          placeholderTextColor="#B0AEE0"
+          maxLength={maxLength}
+          textAlignVertical={textAlignVertical}
+        />
+      </View>
+    </View>
+  );
+};
+
+const inputField = StyleSheet.create({
+  container: {
+    marginBottom: 16,
+    width: '100%',
+  },
+  label: {
+    fontSize: 15,
+    color: '#6C63FF',
+    marginBottom: 4,
+    marginLeft: 4,
+    fontWeight: 'bold',
+  },
+  inputWrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#FFF',
+    borderRadius: 18,
+    borderWidth: 1,
+    borderColor: '#6C63FF',
+    paddingLeft: 16,
+    paddingRight: 8,
+    paddingVertical: 5,
+    width: '100%',
+  },
+  icon: {
+    marginRight: 8,
+  },
+  input: {
+    flex: 1,
+    color: '#000',
+    fontSize: 16,
+    paddingVertical: 8,
+  },
+});
+
+export default InputField;

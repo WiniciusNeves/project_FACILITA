@@ -1,60 +1,60 @@
-# Dashboard do Prestador e Melhorias no Fluxo Usuário/Prestador
+# Reorganização da Estrutura de Pastas para Feature-Based
 
 ## O que foi feito? 📝
 
-- Implementada a tela principal do prestador (`ProviderDashboardScreen`) com serviços mockados, informações do prestador e botões de ação.
-- Garantido o redirecionamento correto pós-login: clientes vão para `Main`, prestadores vão para `ProviderDashboardScreen`.
-- Melhorada a experiência do usuário e o UI/UX dos dashboards de cliente e prestador.
-- A imagem de perfil agora é salva no cadastro e exibida no header para ambos os papéis.
+- Reestruturada toda a organização de pastas do projeto para o padrão feature-based.
+- Criadas pastas para cada funcionalidade principal em `src/features`, agrupando telas e componentes específicos de cada feature.
+- Componentes reutilizáveis movidos para `src/shared/components`.
+- Estilos, tipos e utilitários globais organizados em `src/shared`.
+- Assets globais mantidos em `src/assets/img`.
+- Atualizados todos os imports para refletir a nova estrutura.
+- Removidas as antigas pastas `components`, `common`, `screens` e `styles` do nível raiz.
 
 ---
 
 ## Como foi feito?
 
-1. **Implementação do Dashboard do Prestador**
+1. **Criação da Estrutura Feature-Based**
+   - Para cada tela/fluxo principal, foi criada uma pasta em `src/features` contendo a tela e seus componentes exclusivos.
+   - Componentes, estilos, tipos e utils compartilhados foram movidos para `src/shared`.
 
-   - Criada nova tela para prestadores com header exibindo informações, lista de serviços mockados e botões para adicionar/ver serviços e avaliações.
+2. **Organização dos Assets**
+   - Imagens e ícones globais mantidos em `src/assets/img`.
+   - Possibilidade de assets específicos dentro de cada feature, se necessário.
 
-2. **Redirecionamento pós-login**
+3. **Atualização dos Imports**
+   - Todos os caminhos de importação foram revisados e atualizados para refletir a nova estrutura.
 
-   - Lógica de login atualizada para checar o papel do usuário e navegar para o dashboard correto após autenticação.
-
-3. **Tratamento da Imagem de Perfil**
-
-   - Fluxo de cadastro atualizado para salvar a imagem de perfil escolhida no MMKV.
-   - Header exibe a imagem do usuário ou avatar padrão para ambos os papéis.
+4. **Limpeza de Pastas Antigas**
+   - Pastas antigas que não seguiam o padrão feature-based foram removidas após a migração.
 
 ---
 
 ## Arquivos Alterados/Criados 📄
 
-- `src/screens/Home/ProviderDashboardScreen.tsx`
-- `src/screens/Home/ClientDashboardScreen.tsx`
-- `src/components/common/ProfessionTagsList.tsx`
-- `src/components/common/Tag.tsx`
-- `src/components/common/UserCardMini.tsx`
-- `src/components/common/UserModal.tsx`
-- `src/components/ProfileImagePicker.tsx`
-- `src/screens/Register/Register.tsx`
-- `src/components/common/Header.tsx`
-- `src/screens/Auth.tsx`
-- `src/types/Category.ts`
-- `src/types/Provider.ts`
-- `src/types/Service.ts`
-- `src/types/User.ts`
-- `src/utils/templates/jobTagTemplates.ts`
-- `docs/PullRequest.md`
+- Estrutura de pastas em `src/features` e `src/shared`
+- Atualização de todos os arquivos de tela, componente, estilo, tipo e utilitário para a nova estrutura
+- Atualização dos imports em todo o projeto
+- Remoção das pastas antigas `components`, `common`, `screens` e `styles`
 
 ---
 
 ## Tipo de mudança 🏗️
 
-- [x] Nova funcionalidade (mudança sem quebra que adiciona funcionalidade)
+- [ ] Nova funcionalidade (mudança sem quebra que adiciona funcionalidade)
 - [ ] Correção de bug (mudança sem quebra que corrige um problema)
-- [ ] Refatoração (melhoria de código sem quebra)
-- [ ] Chore (manutenção, build, configs, etc)
+- [x] Refatoração (melhoria de código sem quebra)
+- [x] Chore (manutenção, build, configs, etc)
 - [ ] Teste (unitário/integrado)
 - [ ] Mudança com quebra 💥
+
+---
+
+## Observações
+
+- A nova estrutura facilita a manutenção, escalabilidade e onboarding de novos desenvolvedores.
+- Componentes e arquivos agora estão agrupados por contexto de uso, seguindo as melhores práticas de organização feature-based.
+- Todos os imports foram revisados para evitar erros de build.
 
 ---
 

@@ -5,25 +5,25 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {AuthStackParamList} from './types';
-import BottomTabMenu from '../components/common/BottomTabMenu';
+import BottomTabMenu from '../shared/components/BottomTabMenu';
 
 // Importação das telas de autenticação
-import Onboarding from '../screens/onboarding/Onboarding';
-import Onboarding2 from '../screens/onboarding/Onboarding2';
-import Onboarding3 from '../screens/onboarding/Onboarding3';
-import Policy from '../screens/Policy';
-import AuthScreen from '../screens/Auth';
-import RestorePassword from '../screens/RestorePassword';
-import Register from '../screens/Register/Register';
-import EmailVerification from '../screens/Register/EmailVerification';
-import CompleteRegistration from '../screens/Register/CompleteRegistration';
-import SplashScreen from '../screens/SplashScreen';
+import Onboarding from '../features/onboarding/Onboarding';
+import Onboarding2 from '../features/onboarding/Onboarding2';
+import Onboarding3 from '../features/onboarding/Onboarding3';
+import Policy from '../features/Policy/PolicyScreen';
+import AuthScreen from '../features/Login/LoginScreen';
+import RestorePassword from '../features/Login/RestorePassword';
+import Register from '../features/Signup/SignupScreen';
+import EmailVerification from '../features/SignUp/EmailVerification';
+import CompleteRegistration from '../features/SignUp/CompleteRegistration';
+import SplashScreen from '../features/Splash/SplashScreen';
 
 // Futuro: telas principais do app
-import ClientDashboardScreen from '../screens/Home/ClientDashboardScreen';
-import ProviderDashboardScreen from '../screens/Home/ProviderDashboardScreen';
-import Option from '../screens/Option/Option';
-import AtividadeScreen from '../screens/Atividade/Atividade';
+import ClientDashboardScreen from '../features/ClientDashboard/ClientDashboardScreen';
+import ProviderDashboardScreen from '../features/ProviderDashboard/ProviderDashboardScreen';
+import Option from '../features/Option/OptionScreen';
+import AtividadeScreen from '../features/Atividade/AtividadeScreen';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
 const AuthStack = createNativeStackNavigator<AuthStackParamList>();
