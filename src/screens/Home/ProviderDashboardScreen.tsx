@@ -16,7 +16,7 @@ import {Service} from '../../types/Service';
 import {Provider as ProviderType} from '../../types/Provider';
 import Header from '../../components/common/Header';
 import PrimaryButton from '../../components/common/PrimaryButton';
-import {Image} from 'react-native-paper/lib/typescript/components/Avatar/Avatar';
+import {Image} from 'react-native-paper';
 
 export default function ProviderDashboardScreen() {
   const navigation = useNavigation();
