@@ -12,14 +12,28 @@ import ProfessionSelectModal from './components/ProfessionSelectModal';
 import {jobTagTemplates} from '../../shared/utils/jobTagTemplates';
 import UserCardMini from '../../shared/components/UserCardMini';
 import UserModal from './components/UserModal';
+import {useCurrentUser} from '../../shared/hooks/useCurrentUser';
+import {Provider} from '../../shared/types/Provider';
+
+// Corrigir tipo dos providers mockados para corresponder ao tipo Provider
+// Adicionar campos extras (name, tags, photoUrl, etc) apenas para uso local na tela
+// Usar um tipo auxiliar para os mockados
+
+type MockProvider = Provider & {
+  id: number;
+  name: string;
+  tags: string[];
+  photoUrl?: string;
+  description: string;
+};
 
 export default function ClientDashboardScreen() {
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
-  const [currentUser, setCurrentUser] = useState<User | null>(null);
+  const user = useCurrentUser();
   const [searchQuery, setSearchQuery] = useState('');
   const [modalProfVisible, setModalProfVisible] = useState(false);
   const [selectedProfessions, setSelectedProfessions] = useState<string[]>([]);
-  const [providers, setProviders] = useState<Provider[]>([]);
+  const [providers, setProviders] = useState<MockProvider[]>([]);
   const [modalUser, setModalUser] = useState<any | null>(null);
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -27,10 +41,9 @@ export default function ClientDashboardScreen() {
     // Carregar informações do usuário logado
     const userString = storage.getString('user');
     if (userString) {
-      const user: User = JSON.parse(userString);
-      setCurrentUser(user);
+      const userObj: User = JSON.parse(userString);
       // Redireciona para dashboard correto se não for cliente
-      if (user.role === Role.PROVIDER) {
+      if (userObj.role === Role.PROVIDER) {
         (navigation as any).reset &&
           (navigation as any).reset({
             index: 0,
@@ -43,38 +56,58 @@ export default function ClientDashboardScreen() {
     setProviders([
       {
         id: 1,
+        userId: 101,
         name: 'Maria Eletricista',
         tags: ['Eletricista', 'Pintor'],
         photoUrl: undefined,
         description: 'Especialista em instalações elétricas residenciais.',
+        cpfCnpj: '',
+        dateOfBirth: '',
+        address: '',
       },
       {
         id: 2,
+        userId: 102,
         name: 'João Encanador',
         tags: ['Encanador'],
         photoUrl: undefined,
         description: 'Atendo emergências e reformas.',
+        cpfCnpj: '',
+        dateOfBirth: '',
+        address: '',
       },
       {
         id: 3,
+        userId: 103,
         name: 'Ana Diarista',
         tags: ['Diarista', 'Babá'],
         photoUrl: undefined,
         description: 'Limpeza e organização de casas e escritórios.',
+        cpfCnpj: '',
+        dateOfBirth: '',
+        address: '',
       },
       {
         id: 4,
+        userId: 104,
         name: 'Carlos Jardineiro',
         tags: ['Jardineiro'],
         photoUrl: undefined,
         description: 'Cuido do seu jardim com carinho.',
+        cpfCnpj: '',
+        dateOfBirth: '',
+        address: '',
       },
       {
         id: 5,
+        userId: 105,
         name: 'Pedro Motoboy',
         tags: ['Motoboy'],
         photoUrl: undefined,
         description: 'Entregas rápidas e seguras.',
+        cpfCnpj: '',
+        dateOfBirth: '',
+        address: '',
       },
     ]);
   }, [navigation]);
@@ -97,10 +130,11 @@ export default function ClientDashboardScreen() {
   return (
     <View style={styles.container}>
       <Header
-        title={`Olá, ${currentUser?.name?.split(' ')[0] || ''}!`}
+        title={user ? `Olá, ${user.name.split(' ')[0]}!` : 'Dashboard'}
         photo={
-          currentUser?.profile_picture ||
-          require('../../assets/img/avatar1.png')
+          user?.profile_picture
+            ? {uri: user.profile_picture}
+            : require('../../assets/img/avatar1.png')
         }
       />
       <View style={styles.innerContainer}>

@@ -16,10 +16,11 @@ import {User} from '../../shared/types/User';
 import {Service} from '../../shared/types/Service';
 import {Provider as ProviderType} from '../../shared/types/Provider';
 import Header from '../../shared/components/Header';
-import PrimaryButton from '../../shared/components/PrimaryButton';
+import {useCurrentUser} from '../../shared/hooks/useCurrentUser';
 
 export default function ProviderDashboardScreen() {
   const navigation = useNavigation();
+  const user = useCurrentUser();
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [currentProvider, setCurrentProvider] = useState<ProviderType | null>(
     null,
@@ -111,22 +112,6 @@ export default function ProviderDashboardScreen() {
     Alert.alert('Histórico', 'Funcionalidade de histórico em breve!');
   };
 
-  const handleLogout = () => {
-    Alert.alert('Sair', 'Você tem certeza que deseja sair?', [
-      {text: 'Cancelar', style: 'cancel'},
-      {
-        text: 'Sair',
-        onPress: () => {
-          storage.delete('user');
-          if (currentUser?.id) storage.delete(`provider_${currentUser.id}`);
-          navigation.reset
-            ? navigation.reset({index: 0, routes: [{name: 'AuthScreen'}]})
-            : null;
-        },
-      },
-    ]);
-  };
-
   const renderServiceItem = ({item}: {item: Service}) => (
     <TouchableOpacity
       style={styles.serviceCard}
@@ -142,10 +127,11 @@ export default function ProviderDashboardScreen() {
   return (
     <ScrollView style={styles.container}>
       <Header
-        title={`Olá, ${currentUser?.name?.split(' ')[0] || ''}!`}
+        title={user ? `Olá, ${user.name.split(' ')[0]}!` : 'Dashboard'}
         photo={
-          currentUser?.profile_picture ||
-          require('../../assets/img/avatar1.png')
+          user?.profile_picture
+            ? {uri: user.profile_picture}
+            : require('../../assets/img/avatar1.png')
         }
       />
 
@@ -191,12 +177,6 @@ export default function ProviderDashboardScreen() {
           Nenhum serviço cadastrado ainda. Comece adicionando um!
         </Text>
       )}
-
-      <PrimaryButton
-        label="Sair da conta"
-        onPress={handleLogout}
-        style={styles.logoutButton}
-      />
     </ScrollView>
   );
 }

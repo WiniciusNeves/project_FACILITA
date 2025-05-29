@@ -2,6 +2,7 @@ import React from 'react';
 import {View, StyleSheet, ScrollView} from 'react-native';
 import Header from '../../shared/components/Header';
 import OptionCard from '../../shared/components/OptionCard';
+import {useCurrentUser} from '../../shared/hooks/useCurrentUser';
 
 const options = [
   {
@@ -24,12 +25,19 @@ const options = [
   },
 ];
 
-const userPhoto = require('../../assets/img/avatar1.png');
-
 const OptionScreen = () => {
+  const user = useCurrentUser();
+
   return (
     <View style={styles.container}>
-      <Header title="Opções" photo={userPhoto} />
+      <Header
+        title={user ? `Olá, ${user.name.split(' ')[0]}!` : 'Opções'}
+        photo={
+          user?.profile_picture
+            ? {uri: user.profile_picture}
+            : require('../../assets/img/avatar1.png')
+        }
+      />
       <ScrollView contentContainerStyle={styles.optionsContainer}>
         <View style={styles.row}>
           <OptionCard {...options[0]} />
