@@ -9,50 +9,63 @@ import {
   Alert,
   ScrollView,
   Image,
+  Dimensions,
 } from 'react-native';
-import {useNavigation} from '@react-navigation/native';
 import {storage} from '../../shared/utils/storage';
 import {User} from '../../shared/types/User';
 import {Service} from '../../shared/types/Service';
-import {Provider as ProviderType} from '../../shared/types/Provider';
 import Header from '../../shared/components/Header';
 import {useCurrentUser} from '../../shared/hooks/useCurrentUser';
+import ServiceModal from './components/ServiceModal';
+import {jobTagTemplates} from '../../shared/utils/jobTagTemplates';
 
 export default function ProviderDashboardScreen() {
-  const navigation = useNavigation();
   const user = useCurrentUser();
   const [currentUser, setCurrentUser] = useState<User | null>(null);
-  const [currentProvider, setCurrentProvider] = useState<ProviderType | null>(
-    null,
-  );
   const [services, setServices] = useState<Service[]>([]);
   const [averageRating, setAverageRating] = useState<number>(0);
+  const [serviceModalVisible, setServiceModalVisible] = useState(false);
+  const [editingService, setEditingService] = useState<Service | null>(null);
+
+  // Converter jobTagTemplates para Category[]
+  const categories = jobTagTemplates.map((t, idx) => ({
+    id: idx + 1,
+    name: t.label,
+  }));
 
   useEffect(() => {
     const loadUserData = () => {
       const userString = storage.getString('user');
       if (userString) {
-        const user: User = JSON.parse(userString);
-        setCurrentUser(user);
-        if (user.role === 'provider') {
-          const providerString = storage.getString(`provider_${user.id}`);
-          if (providerString) {
-            setCurrentProvider(JSON.parse(providerString));
-          } else {
-            setCurrentProvider({
-              userId: user.id,
-              cpfCnpj: '000.000.000-00',
-              dateOfBirth: '01/01/1990',
-              address: 'Rua Exemplo, 123',
-              description:
-                'Prestador de serviços gerais com 10 anos de experiência.',
-            });
-          }
-        }
+        const parsedUser: User = JSON.parse(userString);
+        setCurrentUser(parsedUser);
       }
     };
 
     const loadProviderServices = () => {
+      let userId = currentUser?.id;
+      if (!userId) {
+        const userString = storage.getString('user');
+        if (userString) {
+          try {
+            const parsedUser: User = JSON.parse(userString);
+            userId = parsedUser.id;
+          } catch {}
+        }
+      }
+      if (userId) {
+        const servicesString = storage.getString(`provider_services_${userId}`);
+        if (servicesString) {
+          try {
+            const parsed = JSON.parse(servicesString);
+            setServices(parsed);
+            return;
+          } catch (e) {
+            // fallback para mock se erro
+          }
+        }
+      }
+      // fallback para mock
       const mockServices: Service[] = [
         {
           id: 101,
@@ -87,35 +100,68 @@ export default function ProviderDashboardScreen() {
     loadUserData();
     loadProviderServices();
     loadAverageRating();
-  }, []);
+  }, [currentUser?.id]);
+
+  // Salva a lista de serviços no MMKV
+  const persistServices = (updated: Service[]) => {
+    if (currentUser) {
+      storage.set(
+        `provider_services_${currentUser.id}`,
+        JSON.stringify(updated),
+      );
+    }
+  };
 
   const handleAddService = () => {
-    // navigation.navigate('AddEditService');
-    Alert.alert(
-      'Novo Serviço',
-      'Funcionalidade de adicionar serviço em breve!',
-    );
+    setEditingService(null);
+    setServiceModalVisible(true);
   };
 
-  const handleViewService = (service: Service) => {
-    // navigation.navigate('ServiceDetail', { serviceId: service.id });
-    Alert.alert('Serviço', `Visualizar serviço: ${service.title}`);
+  const handleEditService = (service: Service) => {
+    setEditingService(service);
+    setServiceModalVisible(true);
   };
 
+  const handleSaveService = (service: Service) => {
+    setServices(prev => {
+      let updated: Service[];
+      const exists = prev.some(s => s.id === service.id);
+      if (exists) {
+        updated = prev.map(s => (s.id === service.id ? service : s));
+      } else {
+        updated = [service, ...prev];
+      }
+      persistServices(updated);
+      return updated;
+    });
+    setServiceModalVisible(false);
+    Alert.alert('Sucesso', 'Serviço salvo com sucesso!');
+  };
+
+  const handleDeleteService = (serviceId: number) => {
+    setServices(prev => {
+      const updated = prev.filter(s => s.id !== serviceId);
+      persistServices(updated);
+      return updated;
+    });
+    setServiceModalVisible(false);
+    Alert.alert('Removido', 'Serviço excluído com sucesso!');
+  };
+
+  // Função para visualizar todas as avaliações
   const handleViewAllReviews = () => {
-    // navigation.navigate('ProviderReviews');
     Alert.alert('Avaliações', 'Funcionalidade de avaliações em breve!');
   };
 
+  // Função para visualizar histórico de serviços
   const handleViewServiceHistory = () => {
-    // navigation.navigate('ProviderServiceHistory');
     Alert.alert('Histórico', 'Funcionalidade de histórico em breve!');
   };
 
   const renderServiceItem = ({item}: {item: Service}) => (
     <TouchableOpacity
       style={styles.serviceCard}
-      onPress={() => handleViewService(item)}>
+      onPress={() => handleEditService(item)}>
       <Text style={styles.serviceCardTitle}>{item.title}</Text>
       <Text style={styles.serviceCardCategory}>{item.category.name}</Text>
       <Text style={styles.serviceCardDescription} numberOfLines={2}>
@@ -123,6 +169,12 @@ export default function ProviderDashboardScreen() {
       </Text>
     </TouchableOpacity>
   );
+
+  const anuncioImageStyle = {
+    width: Dimensions.get('window').width,
+    height: 200,
+    marginBottom: 20,
+  };
 
   return (
     <ScrollView style={styles.container}>
@@ -158,7 +210,7 @@ export default function ProviderDashboardScreen() {
       </View>
       <Image
         source={require('../../assets/img/anuncio.png')}
-        style={{width: '100%', height: 200, marginBottom: 20}}
+        style={anuncioImageStyle}
         resizeMode="contain"
       />
       {/* Meus Serviços */}
@@ -177,6 +229,18 @@ export default function ProviderDashboardScreen() {
           Nenhum serviço cadastrado ainda. Comece adicionando um!
         </Text>
       )}
+      <ServiceModal
+        visible={serviceModalVisible}
+        onClose={() => setServiceModalVisible(false)}
+        onSave={handleSaveService}
+        onDelete={
+          editingService
+            ? () => handleDeleteService(editingService.id)
+            : undefined
+        }
+        categories={categories}
+        initialData={editingService || {}}
+      />
     </ScrollView>
   );
 }
