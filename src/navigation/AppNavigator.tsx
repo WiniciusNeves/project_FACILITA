@@ -21,6 +21,7 @@ import SplashScreen from '../screens/SplashScreen';
 
 // Futuro: telas principais do app
 import ClientDashboardScreen from '../screens/Home/ClientDashboardScreen';
+import ProviderDashboardScreen from '../screens/Home/ProviderDashboardScreen';
 import Option from '../screens/Option/Option';
 import AtividadeScreen from '../screens/Atividade/Atividade';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -70,6 +71,10 @@ function HomeStackNavigator() {
       <HomeStack.Screen
         name="ClientDashboardScreen"
         component={ClientDashboardScreen}
+      />
+      <HomeStack.Screen
+        name="ProviderDashboardScreen"
+        component={ProviderDashboardScreen}
       />
       {/* Adicione outras telas internas do Home aqui */}
     </HomeStack.Navigator>
