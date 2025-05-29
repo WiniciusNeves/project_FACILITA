@@ -1,41 +1,34 @@
-# Dashboard do Usuário e Filtro de Prestadores
+# Dashboard do Prestador e Melhorias no Fluxo Usuário/Prestador
 
 ## O que foi feito? 📝
 
-- Implementada a tela principal do cliente (dashboard) com lista de prestadores mockados, barra de busca e filtro por profissão usando tags e modal.
-- Adicionada seleção de tags com destaque visual para filtrar prestadores por profissão.
-- Integrados os componentes UserCardMini e UserModal para exibir detalhes do prestador em modal ao clicar em "Mais Informações".
-- Garantido que a imagem de perfil do usuário seja salva no cadastro e exibida corretamente no header.
-- Melhorado o componente Tag para ser clicável e indicar visualmente a seleção.
-- Refatoração geral para melhor separação de responsabilidades e experiência do usuário.
+- Implementada a tela principal do prestador (`ProviderDashboardScreen`) com serviços mockados, informações do prestador e botões de ação.
+- Garantido o redirecionamento correto pós-login: clientes vão para `Main`, prestadores vão para `ProviderDashboardScreen`.
+- Melhorada a experiência do usuário e o UI/UX dos dashboards de cliente e prestador.
+- A imagem de perfil agora é salva no cadastro e exibida no header para ambos os papéis.
 
 ---
 
 ## Como foi feito?
 
-1. **Implementação do Dashboard do Cliente**
+1. **Implementação do Dashboard do Prestador**
 
-   - Criada FlatList de prestadores mockados com filtro por tags selecionadas e busca por nome/serviço.
-   - Utilizado ProfessionTagsList e ProfessionSelectModal para filtro por profissão.
-   - Utilizado UserCardMini para cards de prestadores e UserModal para detalhes.
+   - Criada nova tela para prestadores com header exibindo informações, lista de serviços mockados e botões para adicionar/ver serviços e avaliações.
 
-2. **Tratamento da Imagem de Perfil**
+2. **Redirecionamento pós-login**
+
+   - Lógica de login atualizada para checar o papel do usuário e navegar para o dashboard correto após autenticação.
+
+3. **Tratamento da Imagem de Perfil**
 
    - Fluxo de cadastro atualizado para salvar a imagem de perfil escolhida no MMKV.
-   - Header exibe a imagem do usuário ou avatar padrão.
-
-3. **Seleção e Destaque de Tags**
-
-   - Tag agora é clicável e destaca visualmente quando selecionada.
-   - ProfessionTagsList recebe prop selectedTags para controlar destaque.
-
-4. **Refatoração Geral**
-   - Melhorias no gerenciamento de estado e organização do código para clareza e manutenção.
+   - Header exibe a imagem do usuário ou avatar padrão para ambos os papéis.
 
 ---
 
 ## Arquivos Alterados/Criados 📄
 
+- `src/screens/Home/ProviderDashboardScreen.tsx`
 - `src/screens/Home/ClientDashboardScreen.tsx`
 - `src/components/common/ProfessionTagsList.tsx`
 - `src/components/common/Tag.tsx`
@@ -44,26 +37,24 @@
 - `src/components/ProfileImagePicker.tsx`
 - `src/screens/Register/Register.tsx`
 - `src/components/common/Header.tsx`
+- `src/screens/Auth.tsx`
+- `src/types/Category.ts`
+- `src/types/Provider.ts`
+- `src/types/Service.ts`
+- `src/types/User.ts`
+- `src/utils/templates/jobTagTemplates.ts`
+- `docs/PullRequest.md`
 
 ---
 
 ## Tipo de mudança 🏗️
 
 - [x] Nova funcionalidade (mudança sem quebra que adiciona funcionalidade)
-- [x] Correção de bug (mudança sem quebra que corrige um problema)
-- [x] Refatoração (melhoria de código sem quebra)
+- [ ] Correção de bug (mudança sem quebra que corrige um problema)
+- [ ] Refatoração (melhoria de código sem quebra)
 - [ ] Chore (manutenção, build, configs, etc)
 - [ ] Teste (unitário/integrado)
 - [ ] Mudança com quebra 💥
-
----
-
-## Observações
-
-- A imagem de perfil do usuário agora é salva e carregada corretamente para exibição no header.
-- Seleção e filtro por tags estão funcionais e com feedback visual.
-- O modal de detalhes do prestador é exibido sob demanda para cada card.
-- Todo o código segue a estrutura feature-based e o padrão Conventional Commits.
 
 ---
 
