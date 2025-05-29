@@ -109,7 +109,10 @@ export default function EditProfileScreen() {
     <ScrollView keyboardShouldPersistTaps="handled">
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={container.base}>
-          <ProfileImagePicker onImageChange={setProfilePicture} />
+          <ProfileImagePicker
+            onImageChange={setProfilePicture}
+            initialImageUri={profilePicture}
+          />
           <InputField
             label="Nome Completo"
             value={name}
