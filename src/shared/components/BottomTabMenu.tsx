@@ -7,7 +7,7 @@ const TABS = [
   {key: 'HomeTab', icon: 'house', label: 'início'},
   {key: 'OptionTab', icon: 'ellipsis', label: 'opções'},
   {key: 'AtividadeTab', icon: 'file', label: 'atividades'},
-  {key: 'Menu', icon: 'bars', label: 'menu'},
+  {key: 'MenuTab', icon: 'bars', label: 'menu'},
 ] as const;
 
 type TabKey = (typeof TABS)[number]['key'];
@@ -21,7 +21,13 @@ const BottomTabMenu: React.FC<BottomTabBarProps> = ({state, navigation}) => {
           <TouchableOpacity
             key={tab.key}
             style={bottomTabMenuStyles.tab}
-            onPress={() => navigation.navigate(tab.key as never)}
+            onPress={() => {
+              // Zera a pilha ao navegar para a tab
+              navigation.reset({
+                index: 0,
+                routes: [{name: tab.key}],
+              });
+            }}
             activeOpacity={0.7}>
             <FontAwesome6
               name={tab.icon}

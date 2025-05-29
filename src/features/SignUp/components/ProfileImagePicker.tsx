@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, Image, TouchableOpacity, Alert} from 'react-native';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import Icon from 'react-native-vector-icons/FontAwesome6';
@@ -6,12 +6,22 @@ import {profileImageContainer, profileImage} from '../../../shared/styles/auth';
 
 interface ProfileImagePickerProps {
   onImageChange?: (uri: string | null) => void;
+  initialImageUri?: string | null;
 }
 
 export default function ProfileImagePicker({
   onImageChange,
+  initialImageUri,
 }: ProfileImagePickerProps) {
-  const [imageUri, setImageUri] = useState<string | null>(null);
+  const [imageUri, setImageUri] = useState<string | null>(
+    initialImageUri || null,
+  );
+
+  useEffect(() => {
+    if (initialImageUri) {
+      setImageUri(initialImageUri);
+    }
+  }, [initialImageUri]);
 
   const openOptions = () => {
     Alert.alert('Foto de Perfil', 'Escolha uma opção', [

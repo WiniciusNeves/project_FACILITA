@@ -21,6 +21,9 @@ import {useNavigation} from '@react-navigation/native';
 import {AuthStackParamList} from '../../navigation/types';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {storage} from '../../shared/utils/storage';
+import {formatCpfCnpj} from '../../shared/utils/formatCpfCnpj';
+import {formatPhone} from '../../shared/utils/formatPhone';
+import {validateFields} from '../../shared/utils/validateFields';
 
 type RegisterScreenNavigationProp = NativeStackNavigationProp<
   AuthStackParamList,
@@ -56,98 +59,21 @@ export default function Register() {
   const [caption, setCaption] = useState('');
   const [showDatePicker, setShowDatePicker] = useState(false);
 
-  // Função para formatar telefone (apenas visual)
-  const formatPhone = (value: string) => {
-    if (!value) return ''; // Corrige exibição do placeholder
-    const cleaned = value.replace(/\D/g, '').slice(0, 11);
-    if (cleaned.length <= 2) return `(${cleaned}`;
-    if (cleaned.length <= 7)
-      return `(${cleaned.slice(0, 2)}) ${cleaned.slice(2)}`;
-    if (cleaned.length <= 11)
-      return `(${cleaned.slice(0, 2)}) ${cleaned.slice(2, 7)}-${cleaned.slice(
-        7,
-      )}`;
-    return value;
-  };
-
-  // Função para formatar CPF/CNPJ
-  const formatCpfCnpj = (value: string) => {
-    const cleaned = value.replace(/\D/g, '').slice(0, 14);
-    if (cleaned.length <= 11) {
-      // CPF: 000.000.000-00
-      return cleaned
-        .replace(/(\d{3})(\d)/, '$1.$2')
-        .replace(/(\d{3})(\d)/, '$1.$2')
-        .replace(/(\d{3})(\d{1,2})$/, '$1-$2');
-    } else {
-      // CNPJ: 00.000.000/0001-00
-      return cleaned
-        .replace(/(\d{2})(\d)/, '$1.$2')
-        .replace(/(\d{3})(\d)/, '$1.$2')
-        .replace(/(\d{3})(\d)/, '$1/$2')
-        .replace(/(\d{4})(\d{1,2})$/, '$1-$2');
-    }
-  };
-
-  // Função para validar nome composto
-  const isFullName = (name: string) => name.trim().split(' ').length >= 2;
-
-  // Função para validar os campos e definir caption
-  const validateFields = React.useCallback((): void => {
-    if (!isFullName(name)) {
-      setCaption('Informe seu nome completo (nome e sobrenome).');
-      setIsButtonEnabled(false);
-      return;
-    }
-    if (!email.includes('@') || !email.includes('.')) {
-      setCaption("O e-mail deve conter '@' e '.' para ser válido.");
-      setIsButtonEnabled(false);
-      return;
-    }
-    if (!/^[0-9]{10,11}$/.test(phone.replace(/\D/g, ''))) {
-      setCaption('Informe um telefone válido (com DDD).');
-      setIsButtonEnabled(false);
-      return;
-    }
-    if (!/^[0-9]{10,11}$/.test(whatsapp.replace(/\D/g, ''))) {
-      setCaption('Informe um WhatsApp válido (com DDD).');
-      setIsButtonEnabled(false);
-      return;
-    }
-    if (password.length < 8) {
-      setCaption('A senha deve ter pelo menos 8 caracteres.');
-      setIsButtonEnabled(false);
-      return;
-    }
-    if (password !== confirmPassword) {
-      setCaption('As senhas não coincidem.');
-      setIsButtonEnabled(false);
-      return;
-    }
-    if (role === 'PROVIDER') {
-      const cleanedCpfCnpj = cpfCnpj.replace(/\D/g, '');
-      if (
-        !cleanedCpfCnpj ||
-        (cleanedCpfCnpj.length !== 11 && cleanedCpfCnpj.length !== 14)
-      ) {
-        setCaption('Informe um CPF (11 dígitos) ou CNPJ (14 dígitos) válido.');
-        setIsButtonEnabled(false);
-        return;
-      }
-      if (!dateOfBirth.trim()) {
-        setCaption('Informe a data de nascimento.');
-        setIsButtonEnabled(false);
-        return;
-      }
-      if (!address.trim()) {
-        setCaption('Informe o endereço completo.');
-        setIsButtonEnabled(false);
-        return;
-      }
-      // Descrição NÃO é mais obrigatória
-    }
-    setCaption('');
-    setIsButtonEnabled(true);
+  useEffect(() => {
+    const result = validateFields({
+      name,
+      email,
+      phone,
+      whatsapp,
+      password,
+      confirmPassword,
+      role,
+      cpfCnpj,
+      dateOfBirth,
+      address,
+    });
+    setIsButtonEnabled(result.valid);
+    setCaption(result.message);
   }, [
     name,
     email,
@@ -160,13 +86,6 @@ export default function Register() {
     dateOfBirth,
     address,
   ]);
-  useEffect(() => {
-    if (role === 'PROVIDER') {
-      validateFields();
-    } else {
-      validateFields();
-    }
-  }, [validateFields, role]);
 
   // Substituir navegação para dashboards por navegação para Main
   const handleRegister = async () => {
