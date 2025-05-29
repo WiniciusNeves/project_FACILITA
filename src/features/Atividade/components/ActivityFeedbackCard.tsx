@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {View, TextInput, Text, StyleSheet} from 'react-native';
 import UserCardMini from './common/UserCardMini';
 import RatingStars from '../../shared/components/RatingStars';
-import PrimaryButton from '../shared/components/PrimaryButton';
+import PrimaryButton from '../../shared/components/PrimaryButton';
 
 interface ActivityFeedbackCardProps {
   user: {
