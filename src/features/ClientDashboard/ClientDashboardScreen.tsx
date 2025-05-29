@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {View, StyleSheet, Alert, FlatList, Text} from 'react-native';
+import {View, StyleSheet, FlatList, Text} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
@@ -8,7 +8,6 @@ import SearchInput from './components/SearchInput';
 import ProfessionTagsList from './components/ProfessionTagsList';
 import {storage} from '../../shared/utils/storage';
 import {Role, User} from '../../shared/types/User';
-import PrimaryButton from '../../shared/components/PrimaryButton';
 import ProfessionSelectModal from './components/ProfessionSelectModal';
 import {jobTagTemplates} from '../../shared/utils/jobTagTemplates';
 import UserCardMini from '../../shared/components/UserCardMini';
@@ -95,31 +94,6 @@ export default function ClientDashboardScreen() {
     return tagMatch && searchMatch;
   });
 
-  const handleSearch = () => {
-    if (searchQuery.trim()) {
-      navigation.navigate('SearchResults', {query: searchQuery});
-    } else {
-      Alert.alert('Atenção', 'Digite algo para buscar!');
-    }
-  };
-
-  const handleProfilePress = () => {
-    navigation.navigate('EditProfile');
-  };
-
-  const handleLogout = () => {
-    Alert.alert('Sair', 'Você tem certeza que deseja sair?', [
-      {text: 'Cancelar', style: 'cancel'},
-      {
-        text: 'Sair',
-        onPress: () => {
-          storage.delete('user');
-          navigation.replace('AuthScreen');
-        },
-      },
-    ]);
-  };
-
   return (
     <View style={styles.container}>
       <Header
@@ -182,11 +156,6 @@ export default function ClientDashboardScreen() {
           }
           contentContainerStyle={{paddingBottom: 24} as any}
         />
-        <PrimaryButton
-          label="Sair da conta"
-          onPress={handleLogout}
-          style={styles.logoutButton}
-        />
         {/* Modal de detalhes do prestador */}
         <UserModal
           visible={modalVisible}
@@ -220,10 +189,5 @@ const styles = StyleSheet.create({
     height: 1,
     backgroundColor: '#333',
     marginVertical: 6,
-  },
-  logoutButton: {
-    backgroundColor: '#C0392B',
-    marginTop: 32,
-    marginBottom: 12,
   },
 });
