@@ -1,80 +1,73 @@
-# Novas Telas: Menu, Edição de Perfil e Serviços do Autônomo + Ajustes de Navegação
+# Testes Unitários e Refatoração do OptionScreen + Suporte a Testes
 
 ## O que foi feito? 📝
 
-- Criada a tela **Menu** (`MenuScreen`) com cards para editar perfil, histórico de serviços, gerenciar serviços e sair da conta.
-- Criada a tela **Editar Perfil** (`EditProfileScreen`) permitindo ao usuário visualizar e atualizar seus dados pessoais e, se for autônomo, dados de provider.
-- **Adicionada a funcionalidade para autônomos adicionarem, editarem e removerem serviços oferecidos** através da tela `ManageServicesScreen`.
-- Adicionada a navegação para a tela de edição de perfil e de serviços a partir do menu.
-- Integrado o componente `ProfileImagePicker` para alteração da foto de perfil.
-- Utilizados componentes reutilizáveis (`InputField`, `PrimaryButton`, etc) e tipos globais (`User`, `Provider`, `Role`, `Service`).
-- Ajustado o `BottomTabMenu` para zerar a pilha ao trocar de aba.
-- Atualizada a navegação no `AppNavigator` para incluir as novas telas no fluxo principal do app.
+- **Adicionados mocks globais no Jest** para facilitar testes de componentes React Native:
+  - `react-native-mmkv`
+  - `@react-navigation/native`
+  - `react-native` (Alert)
+  - Configurados em `jest-setup.js`.
+- **Incluído `@testing-library/react-native`** como dependência em `package.json` para testes de componentes.
+- **Criados testes unitários para:**
+  - `LoginScreen` (`src/features/Login/__tests__/LoginScreen.test.tsx`): cobre cenários de login e navegação.
+  - Utilitário `storage` (`src/shared/utils/__tests__/storage.test.tsx`): cobre operações de leitura e escrita com MMKV.
+- **Refatorado o `OptionScreen`**:
+  - Substituição do array `options` por um único objeto e ajuste da lógica de layout.
+  - Remoção de estilos não utilizados (`row`, `rowSingle`) para simplificação do código.
+- **Limpeza do utilitário `storage`**:
+  - Removidas opções comentadas de configuração do MMKV.
 
 ---
 
 ## Como foi feito?
 
-1. **Implementação da Tela Menu**
+1. **Configuração de Ambiente de Testes**
 
-   - Criada em `src/features/Menu/MenuScreen.tsx` com cards de navegação usando `OptionCard`.
-   - Card para editar perfil navega para `EditProfileScreen`.
-   - Card para gerenciar serviços navega para `ManageServicesScreen` (visível apenas para autônomos).
-   - Card de histórico de serviços (placeholder para futuras features).
-   - Card de sair da conta faz logout e reseta navegação.
+   - Mocks globais criados em `jest-setup.js` para MMKV, navegação e Alert.
+   - Adicionada dependência do Testing Library para React Native.
 
-2. **Implementação da Tela Editar Perfil**
+2. **Implementação dos Testes**
 
-   - Criada em `src/features/EditProfile/EditProfileScreen.tsx`.
-   - Carrega dados do usuário logado do MMKV e, se for provider, dados do provider.
-   - Permite editar nome, telefone, whatsapp, foto de perfil e, para autônomo, CPF/CNPJ, data de nascimento, endereço e descrição.
-   - Salva alterações no MMKV e exibe mensagem de sucesso.
+   - Testes de unidade para `LoginScreen` simulando interações e navegação.
+   - Testes para utilitário de storage garantindo persistência e leitura correta.
 
-3. **Gerenciamento de Serviços do Autônomo**
+3. **Refatoração do OptionScreen**
 
-   - Criada a tela `src/features/ManageServices/ManageServicesScreen.tsx`.
-   - Permite ao autônomo visualizar, adicionar, editar e remover serviços oferecidos.
-   - Utiliza formulário para cadastro/edição de serviço (nome, descrição, preço, categoria).
-   - Serviços são salvos e atualizados no MMKV junto ao provider.
-   - Feedback visual para operações de sucesso/erro.
+   - Simplificação da estrutura de dados e layout.
+   - Remoção de código e estilos não utilizados.
 
-4. **Ajustes de Navegação**
-   - Adicionada a stack `MenuStackNavigator` ao `MainTabNavigator` em `AppNavigator.tsx`.
-   - Incluída a tela `EditProfileScreen` e `ManageServicesScreen` dentro da stack do menu.
-   - Ajustado o `BottomTabMenu` para zerar a pilha ao trocar de aba, garantindo navegação limpa.
+4. **Limpeza de Código**
+   - Remoção de comentários e opções não utilizadas no utilitário de storage.
 
 ---
 
 ## Arquivos Alterados/Criados 📄
 
-- `src/features/Menu/MenuScreen.tsx`
-- `src/features/EditProfile/EditProfileScreen.tsx`
-- `src/features/ManageServices/ManageServicesScreen.tsx`
-- `src/features/ManageServices/ServiceForm.tsx`
-- `src/navigation/AppNavigator.tsx`
-- `src/shared/components/BottomTabMenu.tsx`
-- Componentes e tipos reutilizados de `src/shared` e `src/features/SignUp/components`
+- `jest-setup.js`
+- `package.json`
+- `src/features/Login/__tests__/LoginScreen.test.tsx`
+- `src/shared/utils/__tests__/storage.test.tsx`
+- `src/features/Option/OptionScreen.tsx`
 
 ---
 
 ## Tipo de mudança 🏗️
 
-- [x] Nova funcionalidade (mudança sem quebra que adiciona funcionalidade)
+- [ ] Nova funcionalidade (mudança sem quebra que adiciona funcionalidade)
 - [ ] Correção de bug (mudança sem quebra que corrige um problema)
 - [x] Refatoração (melhoria de código sem quebra)
 - [x] Chore (manutenção, build, configs, etc)
-- [ ] Teste (unitário/integrado)
+- [x] Teste (unitário/integrado)
 - [ ] Mudança com quebra 💥
 
 ---
 
 ## Observações
 
-- As telas seguem o padrão feature-based e utilizam componentes globais para consistência visual e de lógica.
-- O fluxo de edição de perfil é dinâmico, mostrando campos extras para autônomos.
-- O menu centraliza navegação para futuras features, gerenciamento de serviços e logout.
-- O gerenciamento de serviços permite ao autônomo manter seu portfólio atualizado diretamente pelo app.
-- O reset da pilha nas tabs garante experiência de navegação mais previsível.
+- Os testes seguem padrão feature-based, facilitando manutenção e escalabilidade.
+- Mocks globais garantem isolamento e confiabilidade dos testes.
+- Refatoração do OptionScreen simplifica manutenção futura.
+- Dependências e configurações de teste documentadas para onboarding rápido.
 
 ---
 

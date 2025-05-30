@@ -4,26 +4,12 @@ import Header from '../../shared/components/Header';
 import OptionCard from '../../shared/components/OptionCard';
 import {useCurrentUser} from '../../shared/hooks/useCurrentUser';
 
-const options = [
-  {
-    title: 'Cadastro De Prestador De Serviço',
-    color: '#7C7CFF',
-    image: require('../../assets/img/prestadorServico.png'),
-    size: 50,
-  },
-  {
-    title: 'Suporte',
-    color: '#4B7F6C',
-    image: require('../../assets/img/suporte.png'),
-    size: 80,
-  },
-  {
-    title: 'Relatar Abuso',
-    color: '#C0392B',
-    image: require('../../assets/img/relatarAbuso.png'),
-    size: 80,
-  },
-];
+const options = {
+  title: 'Relatar Abuso',
+  color: '#C0392B',
+  image: require('../../assets/img/relatarAbuso.png'),
+  size: 80,
+};
 
 const OptionScreen = () => {
   const user = useCurrentUser();
@@ -40,11 +26,7 @@ const OptionScreen = () => {
       />
       <ScrollView contentContainerStyle={styles.optionsContainer}>
         <View style={styles.row}>
-          <OptionCard {...options[0]} />
-          <OptionCard {...options[1]} />
-        </View>
-        <View style={styles.rowSingle}>
-          <OptionCard {...options[2]} />
+          <OptionCard {...options} />
         </View>
       </ScrollView>
     </View>
@@ -62,11 +44,6 @@ const styles = StyleSheet.create({
     paddingTop: 0,
   },
   row: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 16,
-  },
-  rowSingle: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
   },
